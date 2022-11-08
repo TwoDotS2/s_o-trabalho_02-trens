@@ -286,7 +286,7 @@
      <string>Trabalho dos trens - DeadLocks e Semáforos</string>
     </property>
    </widget>
-   <widget class="QSlider" name="velocidade_trem1">
+   <widget class="QSlider" name="slider_vel_trem1">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -295,11 +295,14 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="velociade_trem2">
+   <widget class="QSlider" name="slider_vel_trem2">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -308,11 +311,14 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="velociade_trem3">
+   <widget class="QSlider" name="slider_vel_trem3">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -321,31 +327,40 @@
       <height>16</height>
      </rect>
     </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="velociade_trem4">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>480</y>
-      <width>160</width>
-      <height>16</height>
-     </rect>
+    <property name="maximum">
+     <number>200</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="velociade_trem5">
+   <widget class="QSlider" name="slider_vel_trem4">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>510</y>
+      <x>550</x>
+      <y>470</y>
       <width>160</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="slider_vel_trem5">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>500</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>200</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -418,8 +433,8 @@
    <widget class="QLabel" name="label_desc_trem4">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>480</y>
+      <x>520</x>
+      <y>470</y>
       <width>21</width>
       <height>17</height>
      </rect>
@@ -434,8 +449,8 @@
    <widget class="QLabel" name="label_desc_trem5">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>510</y>
+      <x>520</x>
+      <y>500</y>
       <width>21</width>
       <height>17</height>
      </rect>
@@ -533,6 +548,86 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_vel_trem1">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>450</y>
+      <width>16</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_vel_trem2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>480</y>
+      <width>16</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_vel_trem3">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>510</y>
+      <width>16</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_vel_trem4">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>460</y>
+      <width>16</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_vel_trem5">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>500</y>
+      <width>16</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+   </widget>
    <zorder>label_trilho_horizontal_1</zorder>
    <zorder>label_trilho_vertical_1</zorder>
    <zorder>label_trilho_horizontal_2</zorder>
@@ -552,11 +647,11 @@
    <zorder>label_trem3</zorder>
    <zorder>titulo</zorder>
    <zorder>subtitulo</zorder>
-   <zorder>velocidade_trem1</zorder>
-   <zorder>velociade_trem2</zorder>
-   <zorder>velociade_trem3</zorder>
-   <zorder>velociade_trem4</zorder>
-   <zorder>velociade_trem5</zorder>
+   <zorder>slider_vel_trem1</zorder>
+   <zorder>slider_vel_trem2</zorder>
+   <zorder>slider_vel_trem3</zorder>
+   <zorder>slider_vel_trem4</zorder>
+   <zorder>slider_vel_trem5</zorder>
    <zorder>titulo_velocidade</zorder>
    <zorder>label_desc_trem1</zorder>
    <zorder>label_desc_trem2</zorder>
@@ -566,6 +661,11 @@
    <zorder>label_trem4</zorder>
    <zorder>label_trem1</zorder>
    <zorder>label_trem2</zorder>
+   <zorder>label_vel_trem1</zorder>
+   <zorder>label_vel_trem2</zorder>
+   <zorder>label_vel_trem3</zorder>
+   <zorder>label_vel_trem4</zorder>
+   <zorder>label_vel_trem5</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

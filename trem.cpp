@@ -9,6 +9,11 @@ Trem::Trem(int ID, int x, int y){
     velocidade = 100;
 }
 
+//Mudar valor da velocidade
+void Trem::set_velocidade(int vel){
+    this->velocidade = vel;
+}
+
 //Função a ser executada após executar trem->START
 void Trem::run(){
     while(true){
@@ -37,6 +42,7 @@ void Trem::run(){
                 y-=10;
             emit updateGUI(ID, x,y);    //Emite um sinal
             break;
+
         case 3:     //Trem 3
             if (y == 230 && x < 350)
                 x+=10;
@@ -78,6 +84,7 @@ void Trem::run(){
         default:
             break;
         }
+
         msleep(velocidade);
     }
 }

@@ -67,6 +67,38 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//void MainWindow::slider_velocidade_trem(int id, double vel)
+//{
+//    switch(id){
+//    case 1: //Atualiza a velocidade trem1
+//        ui->label_vel_trem1->setText(ui->slider_vel_trem1->value());
+//        break;
+
+//    case 2: //Atualiza a velocidade trem1
+//        ui->label_vel_trem2->setText(ui->slider_vel_trem2->value());
+//        break;
+
+//    case 3: //Atualiza a velocidade trem1
+//        ui->label_vel_trem3->setText(ui->slider_vel_trem3->value());
+//        break;
+
+//    case 4: //Atualiza a velocidade trem1
+//        ui->label_vel_trem4->setText(ui->slider_vel_trem4->value());
+//        break;
+
+//    case 5: //Atualiza a velocidade trem1
+//        ui->label_vel_trem5->setText(ui->slider_vel_trem5->value());
+//        break;
+
+//    default:
+//        break;
+//    }
+//}
+
+//void MainWindow::on_slider_vel_trem1_valueChanged(int vel){
+//    trem1->set_velocidade(vel);
+//}
+
 /*
  * Ao clicar, trens começam execução
  */
