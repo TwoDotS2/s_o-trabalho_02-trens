@@ -8,8 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //Cria o trem com seu (ID, posição X, posição Y)
-    trem1 = new Trem(1, 60, 30);
-    trem2 = new Trem(2, 330, 30);
+    trem1 = new Trem(1, 350, 110);
+    trem2 = new Trem(2, 610, 160);
     trem3 = new Trem(3, 170, 290);
     trem4 = new Trem(4, 440, 350);
     trem5 = new Trem(5, 710, 290);
@@ -27,6 +27,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trem4,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
     connect(trem5,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
 
+    trem1->start();
+    trem2->start();
+    trem3->start();
+    trem4->start();
+    trem5->start();
 }
 
 //Função que será executada quando o sinal UPDATEGUI for emitido
@@ -71,7 +76,6 @@ MainWindow::~MainWindow()
 //    trem2->start();
 //}
 
-///*
 // * Ao clicar, trens param execução
 // */
 //void MainWindow::on_pushButton_2_clicked()
