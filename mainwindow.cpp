@@ -8,8 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //Cria o trem com seu (ID, posição X, posição Y)
-    trem1 = new Trem(1,60,30);
-    trem2 = new Trem(2,330,30);
+    trem1 = new Trem(1, 60, 30);
+    trem2 = new Trem(2, 330, 30);
+    trem3 = new Trem(3, 170, 290);
+    trem4 = new Trem(4, 440, 350);
+    trem5 = new Trem(5, 710, 290);
 
     /*
      * Conecta o sinal UPDATEGUI à função UPDATEINTERFACE.
@@ -20,8 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
      */
     connect(trem1,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
     connect(trem2,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-
-
+    connect(trem3,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
+    connect(trem4,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
+    connect(trem5,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
 
 }
 
@@ -31,9 +35,23 @@ void MainWindow::updateInterface(int id, int x, int y){
     case 1: //Atualiza a posição do objeto da tela (quadrado) que representa o trem1
         ui->label_trem1->setGeometry(x,y,21,17);
         break;
+
     case 2: //Atualiza a posição do objeto da tela (quadrado) que representa o trem2
         ui->label_trem2->setGeometry(x,y,21,17);
         break;
+
+    case 3: //Atualiza a posição do objeto da tela (quadrado) que representa o trem3
+        ui->label_trem3->setGeometry(x,y,21,17);
+        break;
+
+    case 4: //Atualiza a posição do objeto da tela (quadrado) que representa o trem4
+        ui->label_trem4->setGeometry(x,y,21,17);
+        break;
+
+    case 5: //Atualiza a posição do objeto da tela (quadrado) que representa o trem5
+        ui->label_trem5->setGeometry(x,y,21,17);
+        break;
+
     default:
         break;
     }
@@ -47,17 +65,17 @@ MainWindow::~MainWindow()
 /*
  * Ao clicar, trens começam execução
  */
-void MainWindow::on_pushButton_clicked()
-{
-    trem1->start();
-    trem2->start();
-}
+//void MainWindow::on_pushButton_clicked()
+//{
+//    trem1->start();
+//    trem2->start();
+//}
 
-/*
- * Ao clicar, trens param execução
- */
-void MainWindow::on_pushButton_2_clicked()
-{
-    trem1->terminate();
-    trem2->terminate();
-}
+///*
+// * Ao clicar, trens param execução
+// */
+//void MainWindow::on_pushButton_2_clicked()
+//{
+//    trem1->terminate();
+//    trem2->terminate();
+//}
