@@ -11,7 +11,8 @@ Trem::Trem(int ID, int x, int y){
 
 //Mudar valor da velocidade
 void Trem::set_velocidade(int vel){
-    this->velocidade = vel;
+    //A função da velocidade varia de 0 até 200
+    this->velocidade =  (vel - 200)*(-1);
 }
 
 //Função a ser executada após executar trem->START
@@ -84,6 +85,8 @@ void Trem::run(){
         default:
             break;
         }
+
+        while(velocidade == 0);
 
         msleep(velocidade);
     }

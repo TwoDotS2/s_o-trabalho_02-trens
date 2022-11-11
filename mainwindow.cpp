@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "string.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -67,51 +68,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//void MainWindow::slider_velocidade_trem(int id, double vel)
-//{
-//    switch(id){
-//    case 1: //Atualiza a velocidade trem1
-//        ui->label_vel_trem1->setText(ui->slider_vel_trem1->value());
-//        break;
+void MainWindow::on_slider_vel_trem1_valueChanged(int value)
+{
+    trem1->set_velocidade(value);
+    ui->label_vel_trem1->setText(QString::number(value)+ " U.M.");
+}
 
-//    case 2: //Atualiza a velocidade trem1
-//        ui->label_vel_trem2->setText(ui->slider_vel_trem2->value());
-//        break;
+void MainWindow::on_slider_vel_trem2_valueChanged(int value)
+{
+    trem2->set_velocidade(value);
+    ui->label_vel_trem2->setText(QString::number(value)+ " U.M.");
+}
 
-//    case 3: //Atualiza a velocidade trem1
-//        ui->label_vel_trem3->setText(ui->slider_vel_trem3->value());
-//        break;
+void MainWindow::on_slider_vel_trem3_valueChanged(int value)
+{
+    trem3->set_velocidade(value);
+    ui->label_vel_trem3->setText(QString::number(value) + " U.M.");
+}
 
-//    case 4: //Atualiza a velocidade trem1
-//        ui->label_vel_trem4->setText(ui->slider_vel_trem4->value());
-//        break;
+void MainWindow::on_slider_vel_trem4_valueChanged(int value)
+{
+    trem4->set_velocidade(value);
+    ui->label_vel_trem4->setText(QString::number(value)+ " U.M.");
+}
 
-//    case 5: //Atualiza a velocidade trem1
-//        ui->label_vel_trem5->setText(ui->slider_vel_trem5->value());
-//        break;
-
-//    default:
-//        break;
-//    }
-//}
-
-//void MainWindow::on_slider_vel_trem1_valueChanged(int vel){
-//    trem1->set_velocidade(vel);
-//}
-
-/*
- * Ao clicar, trens começam execução
- */
-//void MainWindow::on_pushButton_clicked()
-//{
-//    trem1->start();
-//    trem2->start();
-//}
-
-// * Ao clicar, trens param execução
-// */
-//void MainWindow::on_pushButton_2_clicked()
-//{
-//    trem1->terminate();
-//    trem2->terminate();
-//}
+void MainWindow::on_slider_vel_trem5_valueChanged(int value)
+{
+    trem5->set_velocidade(value);
+    ui->label_vel_trem5->setText(QString::number(value)+ " U.M.");
+}
