@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     sem_init(&semaforo, 0, 1);
 
     //Todas as malhas estão livres a priori;
-    for(i= 0; i < 7 ;i++ ){
+    for(int i= 0; i < 7 ;i++ ){
         estado_malhas_criticas[i] = ACESSIVEL;
     }
 
@@ -116,22 +116,22 @@ void MainWindow::entrar_em_regiao(int ID, int regiao){
     case 1:
 
         if(regiao == 0){
-            if( railState[0] == FREE &&
-                !(railState[5] == BUSY && railState[1] == BUSY && railState[2] == BUSY && railState[6] == BUSY) &&
-                !(railState[2] == BUSY && railState[4] == BUSY && railState[6] == BUSY) &&
-                (railState[2] == FREE || railState[3] == FREE)
+            if( estado_malhas_criticas[0] == ACESSIVEL &&
+                !(estado_malhas_criticas[5] == INACESSIVEL && estado_malhas_criticas[1] == INACESSIVEL&& estado_malhas_criticas[2] == INACESSIVEL && estado_malhas_criticas[6] == INACESSIVEL) &&
+                !(estado_malhas_criticas[2] == INACESSIVEL && estado_malhas_criticas[4] == INACESSIVEL && estado_malhas_criticas[6] == INACESSIVEL) &&
+                (estado_malhas_criticas[2] == ACESSIVEL || estado_malhas_criticas[3] == ACESSIVEL)
 
              ){
 
 
-                railState[0] = BUSY;
-                trem1->setX(ui->label_trem1->x()+10);
+                estado_malhas_criticas[0] = INACESSIVEL;
+                trem1->set_x(ui->label_trem1->x()+10);
             }
         }
         else if(regiao == 2){
-            if(railState[2] == FREE){
-                railState[2] = BUSY;
-                trem1->setY(ui->label_trem1->y()+10);
+            if(estado_malhas_criticas[2] == ACESSIVEL){
+                estado_malhas_criticas[2] = INACESSIVEL;
+                trem1->set_y(ui->label_trem1->y()+10);
             }
         }
 

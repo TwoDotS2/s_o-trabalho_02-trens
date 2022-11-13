@@ -20,6 +20,10 @@ public:
 public slots:
     void updateInterface(int,int,int);
 
+    void entrar_em_regiao(int ID, int regiao);
+
+    void sair_de_regiao(int regiao);
+
 private slots:
   void on_slider_vel_trem1_valueChanged(int value);
 
@@ -30,10 +34,6 @@ private slots:
   void on_slider_vel_trem4_valueChanged(int value);
 
   void on_slider_vel_trem5_valueChanged(int value);
-
-  void entar_em_regiao(int ID, int regiao);
-
-  void sair_de_regiao(int regiao);
 
 private:
     Ui::MainWindow *ui;

@@ -1,7 +1,6 @@
 #include "trem.h"
 #include <QtCore>
 
-//Construtor
 Trem::Trem(int ID, int x, int y){
     this->ID = ID;
     this->x = x;
@@ -9,27 +8,28 @@ Trem::Trem(int ID, int x, int y){
     velocidade = 100;
 }
 
-//Mudar valor da velocidade
 void Trem::set_velocidade(int vel){
-    //A função da velocidade varia de 0 até 200
     this->velocidade =  (vel - 200)*(-1);
 }
 
-//Função a ser executada após executar trem->START
+void Trem::set_x(int x){
+    this->x = x;
+}
+
+void Trem::set_y(int y){
+    this->y = y;
+}
+
 void Trem::run(){
 
     int deslocamento;
 
-
     while(true){
-
         //Se a velocidade chegar em zero, o trem não deve se mover
         if (velocidade == 200) deslocamento = 0;
         else deslocamento = 10;
 
         switch(ID){
-
-
             case 1:
                 //Trem 1
                 // O Trem 1 usa as regiões: 0, 2, 5, 1.
@@ -126,7 +126,7 @@ void Trem::run(){
                 } else if (x == 440 && y == 110){
                     //Sair da região 0
                     emit sair_de_regiao(0);
-                    x+ = deslocamento;
+                    x += deslocamento;
                 }
 
                 else if (x < 610 && y == 110){
@@ -174,8 +174,6 @@ void Trem::run(){
                 emit updateGUI(ID, x, y);    //Emite um sinal
                 break;
 
-
-
             case 4:
                 //Trem 4
                 // O Trem 4 usa as regiões: 5, 2, 0, 3, 6.
@@ -208,7 +206,7 @@ void Trem::run(){
                 } else if (x == 440 && y == 230){
                     //Sair da região 0
                     emit sair_de_regiao(0);
-                    x+ = deslocamento;
+                    x += deslocamento;
 
                 } else if (x == 530 && y == 230){
                     //Sair da região 3

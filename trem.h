@@ -13,13 +13,46 @@
 class Trem: public QThread{
  Q_OBJECT
 public:
-    Trem(int,int,int);  //construtor
-    void run();         //função a ser executada pela thread
+    /**
+     * @brief Construtor
+     */
+    Trem(int,int,int);
+
+    /**
+     * Função a ser executada pela thread, ela é executada após executar trem->START
+     * @brief run
+     */
+    void run();
+
+    /**
+     * seta a velocidade atual para o tem
+     * A função da velocidade varia de 0 até 200
+     * @brief set_velocidade
+     * @param vel
+     */
     void set_velocidade(int vel);
+
+    /**
+     * seta a posição x do trem
+     * @brief Trem::set_x
+     * @param x
+     */
+    void set_x(int x);
+
+    /**
+     * seta a posição y do trem
+     * @brief Trem::set_y
+     * @param y
+     */
+    void set_y(int y);
 
 //Cria um sinal
 signals:
     void updateGUI(int,int,int);
+
+    void entrar_em_regiao(int ID, int regiao);
+
+    void sair_de_regiao(int regiao);
 
 private:
    int x;           //posição X do trem na tela
