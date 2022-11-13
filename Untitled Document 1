@@ -14,3 +14,24 @@ T1 acessa as regiões:
 	Região 2:
 		Pede para entrar em (370, 230)
 		Sai em (260, >230)
+		
+		
+		
+Segunda anotação. Pontos de regiões críticas, seguindo linearmente do primeiro de cima até o último mais abaixo:
+
+--------- TRILHOS HORIZONTALMENTE SUPERIORES -------
+1 -> X: 259 à 281 e Y: 110 à 127.
+2 -> X:  440 à 460 e Y: 110 à 127.
+3 -> X: 610 à 631 e Y: 110 à 127.
+
+-------- TRILHOS HORIZONTALMENTE NO MEIO ----------
+1 -> X: 170 à 191 e Y: 230 à 241.
+2 -> X: 350 à 371 e Y: 230 à 241.
+3 -> X: 530 à 551 e Y: 230 à 241.
+4 -> X: 710 à 731 e Y: 230 à 241.
+
+------- TRILHOS HORIZONTALMENTE INFERIORES --------
+1 -> X: 170 à 191 e Y: 350 à 367.
+2 -> X: 350 à 371 e Y: 350 à 367.
+3 -> X: 530 à 551 e Y: 350 à 367.
+4 -> X: 710 à 731 e Y: 350 à 367.
