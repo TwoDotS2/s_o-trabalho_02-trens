@@ -71,13 +71,13 @@ MainWindow::~MainWindow()
 void MainWindow::on_slider_vel_trem1_valueChanged(int value)
 {
     trem1->set_velocidade(value);
-    ui->label_vel_trem1->setText(QString::number(value)+ " U.M.");
+    ui->label_vel_trem1->setText(QString::number(value) + " U.M.");
 }
 
 void MainWindow::on_slider_vel_trem2_valueChanged(int value)
 {
     trem2->set_velocidade(value);
-    ui->label_vel_trem2->setText(QString::number(value)+ " U.M.");
+    ui->label_vel_trem2->setText(QString::number(value) + " U.M.");
 }
 
 void MainWindow::on_slider_vel_trem3_valueChanged(int value)

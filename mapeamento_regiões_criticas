@@ -1,0 +1,16 @@
+O nome das regiões foi dado a partir do sentido horário do primeiro trem -T1 - em diante.
+
+
+T1 acessa as regiões:
+	Região 0:
+		Pede para entrar em (420, 110)
+		Sai em (>440, 230)
+	Região 1:
+		Pede para entrar em (440, 210)
+		Sai em (>370, 230)	
+	Região 5:
+		Pede para entrar em (370, 230)
+		Sai em (>350, 230)
+	Região 2:
+		Pede para entrar em (370, 230)
+		Sai em (260, >230)
