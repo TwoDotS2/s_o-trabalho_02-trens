@@ -35,7 +35,7 @@ void Trem::run(){
                 // O Trem 1 usa as regiões: 0, 2, 5, 1.
 
                 //Região 0
-                if (x == 440 && y == 110){
+                if (x == 420 && y == 110){
                     //Entrar na região 0
                     emit entrar_em_regiao(ID, 0);
                 } else if (x == 440 && y == 230){
@@ -45,7 +45,7 @@ void Trem::run(){
                 }
 
                 //Região 2
-                else if (x == 440 && y == 230){
+                else if (x == 440 && y == 210){
                     //Entrar na região 2
                     emit entrar_em_regiao(ID, 2);
                 } else if (x == 350 && y == 230){
@@ -75,14 +75,12 @@ void Trem::run(){
                 }
 
                 //Zona livre do trem 1
-                else if (x == 260 && y > 110){ //Primeira lateral
+                else if (x == 260 && y > 110){
+                    //Primeira lateral
                     y -= deslocamento;
-                } else if((x >= 260 && y == 110) && (x < 440 && y == 110)){
+                } else if(x < 420 && y == 110){
+                    //Segunda lateral
                     x += deslocamento;
-                } else if(x == 440 && y > 110){
-                    y += deslocamento;
-                } else if(x > 260 && y == 230){
-                    x -= deslocamento;
                 }
 
 
@@ -172,11 +170,16 @@ void Trem::run(){
                     x -= deslocamento;
                 }
 
-                else if (x > 170 && y == 110){
-                    //Zona livre do trem 3
+                //Zona livre do trem 3
+                else if (x > 170 && y == 350){
                     x -= deslocamento;
-                } else
+                } else if (x == 170 && y > 230)
                     y -= deslocamento;
+
+                else if (x < 240 && y == 230){
+                    //Zona livre do trem 3
+                    x += deslocamento;
+               }
 
 
                 emit updateGUI(ID, x, y);    //Emite um sinal
@@ -194,7 +197,6 @@ void Trem::run(){
                     emit sair_de_regiao(5);
                     x += deslocamento;
                 }
-
 
                 else if (x == 350 && y == 250){
                     //Entrar na região 2
@@ -267,10 +269,11 @@ void Trem::run(){
                 else if (x < 710 && y == 230){
                     //Zona livre do trem 4
                     x += deslocamento;
-                } else
+                } else if (x == 710 && y < 350){
                     y += deslocamento;
-
-
+                } else if (x > 550 && y == 350){
+                    x-= deslocamento;
+                }
 
                 emit updateGUI(ID, x, y);    //Emite um sinal
                 break;

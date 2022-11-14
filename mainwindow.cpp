@@ -3,13 +3,18 @@
 #include "string.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include <semaphore.h>
-
-#define ACESSIVEL 1
-#define INACESSIVEL 0
+#include <QSemaphore>
 
 int estado_malhas_criticas[7]; // Vetor para controlar o estado de cada malha crítica
-sem_t semaforo;
+
+//Semaforos de cada região
+QSemaphore semaforo_0(1);
+QSemaphore semaforo_1(1);
+QSemaphore semaforo_2(1);
+QSemaphore semaforo_3(1);
+QSemaphore semaforo_4(1);
+QSemaphore semaforo_5(1);
+QSemaphore semaforo_6(1);
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -17,14 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    //Inicialização do semaforo
-    sem_init(&semaforo, 0, 1);
-
-    //Todas as malhas estão livres a priori;
-    for(int i= 0; i < 7 ;i++ ){
-        estado_malhas_criticas[i] = ACESSIVEL;
-    }
 
     //Cria o trem com seu (ID, posição X, posição Y)
     trem1 = new Trem(1, 350, 110);
@@ -76,23 +73,23 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::updateInterface(int ID, int x, int y){
     switch(ID){
     case 1: //Atualiza a posição do objeto da tela (quadrado) que representa o trem1
-        ui->label_trem1->setGeometry(x,y,21,17);
+        ui->label_trem1->setGeometry(x, y, 21, 17);
         break;
 
     case 2: //Atualiza a posição do objeto da tela (quadrado) que representa o trem2
-        ui->label_trem2->setGeometry(x,y,21,17);
+        ui->label_trem2->setGeometry(x, y, 21, 17);
         break;
 
     case 3: //Atualiza a posição do objeto da tela (quadrado) que representa o trem3
-        ui->label_trem3->setGeometry(x,y,21,17);
+        ui->label_trem3->setGeometry(x, y, 21, 17);
         break;
 
     case 4: //Atualiza a posição do objeto da tela (quadrado) que representa o trem4
-        ui->label_trem4->setGeometry(x,y,21,17);
+        ui->label_trem4->setGeometry(x, y, 21, 17);
         break;
 
     case 5: //Atualiza a posição do objeto da tela (quadrado) que representa o trem5
-        ui->label_trem5->setGeometry(x,y,21,17);
+        ui->label_trem5->setGeometry(x, y, 21, 17);
         break;
 
     default:
@@ -112,103 +109,166 @@ bool MainWindow::caso(int malha_critica, int estado){
 //Entrar em região crítica
 
 void MainWindow::entrar_em_regiao(int ID, int regiao){
-    sem_wait(&semaforo);
 
     switch (ID) {
 
     case 1:
         if(regiao == 0){
-            if(estado_malhas_criticas[0] == ACESSIVEL){
-                estado_malhas_criticas[0] = INACESSIVEL;
-                trem1->set_y(ui->label_trem1->y()+10);
-            }
-        } else if(regiao == 2){
-            if(estado_malhas_criticas[2] == ACESSIVEL){
-                estado_malhas_criticas[2] = INACESSIVEL;
-                trem1->set_x(ui->label_trem1->x()-10);
-            }
-        } else if(regiao == 5){
-            if(estado_malhas_criticas[5] == ACESSIVEL){
-                estado_malhas_criticas[5] = INACESSIVEL;
-                trem1->set_x(ui->label_trem1->x()-10);
-            }
-        } else if(regiao == 1){
-            if(estado_malhas_criticas[1] == ACESSIVEL){
-                estado_malhas_criticas[1] = INACESSIVEL;
-                trem1->set_y(ui->label_trem1->y()-10);
-            }
-        }
+
+            trem1->set_y(ui->label_trem1->y()+10);
+      }
+
+//    else if(regiao == 2){
+//            if(estado_malhas_criticas[2] == ACESSIVEL){
+//                estado_malhas_criticas[2] = INACESSIVEL;
+//                trem1->set_x(ui->label_trem1->x()-10);
+//            }
+//        } else if(regiao == 5){
+//            if(estado_malhas_criticas[5] == ACESSIVEL){
+//                estado_malhas_criticas[5] = INACESSIVEL;
+//                trem1->set_x(ui->label_trem1->x()-10);
+//            }
+//        } else if(regiao == 1){
+//            if(estado_malhas_criticas[1] == ACESSIVEL){
+//                estado_malhas_criticas[1] = INACESSIVEL;
+//                trem1->set_y(ui->label_trem1->y()-10);
+//            }
+//        }
         break;
 
     case 2:
-        if(regiao == 0){
-            if(estado_malhas_criticas[0] == ACESSIVEL){
-                estado_malhas_criticas[0] = INACESSIVEL;
-                trem1->set_y(ui->label_trem1->y()-10);
-            }
-        } else if(regiao == 3){
-            if(estado_malhas_criticas[3] == ACESSIVEL){
-                estado_malhas_criticas[3] = INACESSIVEL;
-                trem1->set_x(ui->label_trem1->x()+10);
-            }
-        } else if(regiao == 4){
-            if(estado_malhas_criticas[4] == ACESSIVEL){
-                estado_malhas_criticas[4] = INACESSIVEL;
-                trem1->set_x(ui->label_trem1->x()-10);
-            }
-        } else if(regiao == 6){
-            if(estado_malhas_criticas[6] == ACESSIVEL){
-                estado_malhas_criticas[6] = INACESSIVEL;
-                trem1->set_x(ui->label_trem1->x()-10);
-            }
-        }
+//        if(regiao == 0){
+//            if(estado_malhas_criticas[0] == ACESSIVEL){
+//                estado_malhas_criticas[0] = INACESSIVEL;
+//                trem1->set_y(ui->label_trem1->y()-10);
+//            }
+//        } else if(regiao == 3){
+//            if(estado_malhas_criticas[3] == ACESSIVEL){
+//                estado_malhas_criticas[3] = INACESSIVEL;
+//                trem1->set_x(ui->label_trem1->x()+10);
+//            }
+//        } else if(regiao == 4){
+//            if(estado_malhas_criticas[4] == ACESSIVEL){
+//                estado_malhas_criticas[4] = INACESSIVEL;
+//                trem1->set_x(ui->label_trem1->x()-10);
+//            }
+//        } else if(regiao == 6){
+//            if(estado_malhas_criticas[6] == ACESSIVEL){
+//                estado_malhas_criticas[6] = INACESSIVEL;
+//                trem1->set_x(ui->label_trem1->x()-10);
+//            }
+//        }
         break;
 
     case 3:
-        if(regiao == 1){
+//        if(regiao == 1){
 
-        } else if(regiao == 5){
+//        } else if(regiao == 5){
 
-        }
+//        }
 
         break;
 
     case 4:
-        if(regiao == 0){
+//        if(regiao == 0){
 
-        } else if(regiao == 2){
+//        } else if(regiao == 2){
 
-        } else if(regiao == 3){
+//        } else if(regiao == 3){
 
-        } else if(regiao == 5){
+//        } else if(regiao == 5){
 
-        } else if(regiao == 6){
+//        } else if(regiao == 6){
 
-        }
+//        }
         break;
     case 5:
-        if(regiao == 4){
+//        if(regiao == 4){
 
-        } else if(regiao == 6){
+//        } else if(regiao == 6){
 
-        }
+//        }
         break;
 
     default:
         break;
    }
-    sem_post(&semaforo);
 }
 
 //Sair da região crítica
 
 void MainWindow::sair_de_regiao(int regiao){
-    sem_wait(&semaforo);
-    estado_malhas_criticas[regiao] == ACESSIVEL;
-    sem_post(&semaforo);
+    if (regiao == 0){
+        semaforo_0.release();
+        return;
+    }
+
+    if (regiao == 1){
+        semaforo_1.release();
+        return;
+    }
+
+    if (regiao == 2){
+        semaforo_2.release();
+        return;
+    }
+
+    if (regiao == 3){
+        semaforo_3.release();
+        return;
+    }
+
+    if (regiao == 4){
+        semaforo_4.release();
+        return;
+    }
+    if (regiao == 5){
+        semaforo_5.release();
+        return;
+    }
+
+    if (regiao == 6){
+        semaforo_6.release();
+        return;
+    }
 }
 
 
+void MainWindow::solicitar_semaforo(int regiao){
+    if (regiao == 0){
+        semaforo_0.acquire();
+        return;
+    }
+
+    if (regiao == 1){
+        semaforo_1.acquire();
+        return;
+    }
+
+    if (regiao == 2){
+        semaforo_2.acquire();
+        return;
+    }
+
+    if (regiao == 3){
+        semaforo_3.acquire();
+        return;
+    }
+
+    if (regiao == 4){
+        semaforo_4.acquire();
+        return;
+    }
+    if (regiao == 5){
+        semaforo_5.acquire();
+        return;
+    }
+
+    if (regiao == 6){
+        semaforo_6.acquire();
+        return;
+    }
+}
 
 //Sliders
 
