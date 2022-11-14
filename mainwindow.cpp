@@ -105,6 +105,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+bool MainWindow::caso(int malha_critica, int estado){
+    return malha_critica == estado ? true : false;
+}
 
 //Entrar em região crítica
 
@@ -114,50 +117,174 @@ void MainWindow::entrar_em_regiao(int ID, int regiao){
     switch (ID) {
 
     case 1:
-
-        if(regiao == 0){
-            if( estado_malhas_criticas[0] == ACESSIVEL &&
-                !(estado_malhas_criticas[5] == INACESSIVEL && estado_malhas_criticas[1] == INACESSIVEL&& estado_malhas_criticas[2] == INACESSIVEL && estado_malhas_criticas[6] == INACESSIVEL) &&
-                !(estado_malhas_criticas[2] == INACESSIVEL && estado_malhas_criticas[4] == INACESSIVEL && estado_malhas_criticas[6] == INACESSIVEL) &&
-                (estado_malhas_criticas[2] == ACESSIVEL || estado_malhas_criticas[3] == ACESSIVEL)
-
-             ){
-
-
-                estado_malhas_criticas[0] = INACESSIVEL;
-                trem1->set_x(ui->label_trem1->x()+10);
-            }
-        }
-        else if(regiao == 2){
-            if(estado_malhas_criticas[2] == ACESSIVEL){
-                estado_malhas_criticas[2] = INACESSIVEL;
-                trem1->set_y(ui->label_trem1->y()+10);
-            }
-        }
-
-
+        if(regiao == 2){
+                            if(estado_malhas_criticas[2] == ACESSIVEL &&
+                                    !(estado_malhas_criticas[0] == INACESSIVEL &&
+                                      estado_malhas_criticas[1] == INACESSIVEL &&
+                                      estado_malhas_criticas[5] == INACESSIVEL &&
+                                      estado_malhas_criticas[6] == INACESSIVEL
+                                      ) &&
+                                    !(estado_malhas_criticas[0] == INACESSIVEL &&
+                                      estado_malhas_criticas[4] == INACESSIVEL &&
+                                      estado_malhas_criticas[6] == INACESSIVEL) &&
+                                    (estado_malhas_criticas[0] == ACESSIVEL || estado_malhas_criticas[3] == ACESSIVEL)){
+                                estado_malhas_criticas[2] = INACESSIVEL;
+                                trem4->set_y(ui->label_trem4->y()-10);
+                            }
+                        }
+                        else if(regiao == 3){
+                            if(estado_malhas_criticas[3] == ACESSIVEL &&
+                                    !(estado_malhas_criticas[1] == INACESSIVEL &&
+                                      estado_malhas_criticas[5] == INACESSIVEL &&
+                                      estado_malhas_criticas[6] == INACESSIVEL) &&
+                                    (estado_malhas_criticas[4] == ACESSIVEL || estado_malhas_criticas[6] == ACESSIVEL)){
+                                estado_malhas_criticas[3] = INACESSIVEL;
+                                trem4->set_x(ui->label_trem4->x()+10);
+                            }
+                        }
+                        else if(regiao == 6){
+                            if(estado_malhas_criticas[6] == ACESSIVEL){
+                                estado_malhas_criticas[6] = INACESSIVEL;
+                                trem4->set_x(ui->label_trem4->x()+10);
+                            }
+                        }
         break;
 
     case 2:
-
+        if(regiao == 4){
+                            if(estado_malhas_criticas[4] == ACESSIVEL && (estado_malhas_criticas[1] == ACESSIVEL || estado_malhas_criticas[5] == ACESSIVEL)){
+                                estado_malhas_criticas[4] = INACESSIVEL;
+                                trem5->set_y(ui->label_trem5->y()-10);
+                            }
+                        }
+                else if(regiao == 5){
+                            if(estado_malhas_criticas[5] == ACESSIVEL){
+                                estado_malhas_criticas[5] = INACESSIVEL;
+                                trem5->set_x(ui->label_trem5->x()+10);
+                            }
+                        }
+                else if(regiao == 6){
+                            if(estado_malhas_criticas[6] == ACESSIVEL &&
+                                    !(estado_malhas_criticas[0] == INACESSIVEL &&
+                                      estado_malhas_criticas[1] == INACESSIVEL &&
+                                      estado_malhas_criticas[2] == INACESSIVEL &&
+                                      estado_malhas_criticas[5] == INACESSIVEL
+                                      ) &&
+                                    !(estado_malhas_criticas[1] == INACESSIVEL &&
+                                      estado_malhas_criticas[3] == INACESSIVEL &&
+                                      estado_malhas_criticas[5] == INACESSIVEL
+                                      ) &&
+                                    !(estado_malhas_criticas[0] == INACESSIVEL &&
+                                      estado_malhas_criticas[2] == INACESSIVEL &&
+                                      estado_malhas_criticas[4] == INACESSIVEL) &&
+                                    (estado_malhas_criticas[3] == ACESSIVEL || estado_malhas_criticas[4] == ACESSIVEL)){
+                                estado_malhas_criticas[6] = INACESSIVEL;
+                                trem5->set_x(ui->label_trem5->x()-10);
+                            }
+                        }
         break;
 
     case 3:
+        if(regiao == 0){
+                    if(caso(estado_malhas_criticas[0], ACESSIVEL)&&
+                        !(caso(estado_malhas_criticas[5], INACESSIVEL) &&
+                          caso(estado_malhas_criticas[1], INACESSIVEL) &&
+                          caso(estado_malhas_criticas[2], INACESSIVEL) &&
+                          caso(estado_malhas_criticas[6], INACESSIVEL)
+                            ) &&
+                              !(caso(estado_malhas_criticas[2], INACESSIVEL) &&
+                                caso(estado_malhas_criticas[4], INACESSIVEL) &&
+                                caso(estado_malhas_criticas[6], INACESSIVEL)
+                                ) &&
+                                   (caso(estado_malhas_criticas[2], ACESSIVEL) || caso(estado_malhas_criticas[3], ACESSIVEL))
+                     ){
+                        estado_malhas_criticas[0] = INACESSIVEL;
+                        trem1->set_x(ui->label_trem1->x()+10);
+                    }
+                }
+                else if(regiao == 2){
+                    if(caso(estado_malhas_criticas[2], ACESSIVEL)){
+                        estado_malhas_criticas[2] = INACESSIVEL;
+                        trem1->set_y(ui->label_trem1->y()+10);
+                    }
+                }
 
         break;
 
     case 4:
+        if(regiao == 0){
+                  if(estado_malhas_criticas[0] == ACESSIVEL){
+                       estado_malhas_criticas[0] = INACESSIVEL;
+                             trem2->set_x(ui->label_trem2->x()-10);
+                    }
+                 }
+                 else if(regiao == 1){
+                    if(estado_malhas_criticas[1] == ACESSIVEL &&
+                        !(estado_malhas_criticas[0] == INACESSIVEL &&
+                            estado_malhas_criticas[5] == INACESSIVEL &&
+                            estado_malhas_criticas[2] == INACESSIVEL &&
+                            estado_malhas_criticas[6] == INACESSIVEL
+                             ) &&
+                               !(estado_malhas_criticas[3] == INACESSIVEL &&
+                                  estado_malhas_criticas[5] == INACESSIVEL &&
+                                          estado_malhas_criticas[6] == INACESSIVEL) &&
+                                        (estado_malhas_criticas[4] == ACESSIVEL || estado_malhas_criticas[5] == ACESSIVEL)){
 
+                                            estado_malhas_criticas[1] = INACESSIVEL;
+                                            trem2->set_x(ui->label_trem2->x()+10);
+                            }
+                        }
+                        else if(regiao == 4){
+                            if(estado_malhas_criticas[4] == ACESSIVEL &&
+                                    !(estado_malhas_criticas[0] == INACESSIVEL &&
+                                      estado_malhas_criticas[2] == INACESSIVEL &&
+                                      estado_malhas_criticas[6] == INACESSIVEL
+                                      ) &&
+                                        (estado_malhas_criticas[3] == ACESSIVEL || estado_malhas_criticas[6] == ACESSIVEL)){
+
+                                            estado_malhas_criticas[4] = INACESSIVEL;
+                                            trem2->set_y(ui->label_trem2->y()+10);
+                            }
+                        }
+                        else if(regiao == 3){
+                            if(estado_malhas_criticas[3] == ACESSIVEL
+                                    && (estado_malhas_criticas[0] == ACESSIVEL || estado_malhas_criticas[2] == ACESSIVEL)){
+
+                                        estado_malhas_criticas[3] = INACESSIVEL;
+                                        trem2->set_x(ui->label_trem2->x()-10);
+                            }
+                        }
         break;
-
     case 5:
+        if(regiao == 5){
+                            if(estado_malhas_criticas[5] == ACESSIVEL &&
+                                    !(estado_malhas_criticas[0] == INACESSIVEL &&
+                                      estado_malhas_criticas[1] == INACESSIVEL &&
+                                      estado_malhas_criticas[2] == INACESSIVEL &&
+                                      estado_malhas_criticas[6] == INACESSIVEL
+                                      ) &&
+                                    !(estado_malhas_criticas[1] == INACESSIVEL &&
+                                      estado_malhas_criticas[3] == INACESSIVEL &&
+                                      estado_malhas_criticas[6] == INACESSIVEL) &&
+                                    (estado_malhas_criticas[1] == ACESSIVEL || estado_malhas_criticas[4] == ACESSIVEL)){
+                                estado_malhas_criticas[5] = INACESSIVEL;
+                                trem3->set_x(ui->label_trem3->x()-10);
+                            }
+                        }
+                 else if(regiao == 1){
+                            if(estado_malhas_criticas[1] == ACESSIVEL){
+                                estado_malhas_criticas[1] = INACESSIVEL;
+                                trem3->set_x(ui->label_trem3->x()-10);
+                            }
+                        }
+
 
         break;
 
     default:
         break;
-    }
-
+   }
+    sem_post(&semaforo);
 }
 
 //Sair da região crítica
