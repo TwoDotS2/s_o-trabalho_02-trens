@@ -103,26 +103,30 @@ void Trem::run(){
 
 
             case 2:
-//                //Trem 2
-//                // O Trem 2 usa as regiões: 4, 3, 0.
+                //Trem 2
+                // O Trem 2 usa as regiões: 4, 3, 0.
 
-//                //Região 4
-//                if (x == 610 && y == 210){
+                //Região 4
+//                if (x == 610 && y == 210){  //PROBLEMA DE TRAVAMENTO
 //                    //Entrar na região 4
 //                    emit entrar_em_regiao(ID, 4);
-//                } else if (x == 530 && y == 230){
+//                } else if (x == 610 && y == 230){
 //                    //Sair da região 4
-//                    emit sair_de_regiao(4);
+//                    emit sair_de_regiao(4, 2);
 //                     x -= deslocamento;
+//                } else if(x == 610 && y == 220){
+//                       y += deslocamento;
+//                  } else if(x < 610 && y == 230){
+//                    x -= deslocamento;
 //                }
 
-//                //Região 3
+                //Região 3
 //                else if (x == 550 && y == 230){
 //                    //Entrar na região 3
 //                    emit entrar_em_regiao(ID, 3);
 //                } else if (x == 440 && y == 230){
 //                    //Sair da região 3
-//                    emit sair_de_regiao(3);
+//                    emit sair_de_regiao(3, 2);
 //                    y -= deslocamento;
 //                }
 
@@ -132,7 +136,7 @@ void Trem::run(){
 //                    emit entrar_em_regiao(ID, 0);
 //                } else if (x == 440 && y == 110){
 //                    //Sair da região 0
-//                    emit sair_de_regiao(0);
+//                    emit sair_de_regiao(0, 2);
 //                    x += deslocamento;
 //                }
 
@@ -143,11 +147,13 @@ void Trem::run(){
 //                    y += deslocamento;
 //                } else if(x == 440 && y > 110){
 //                    y -= deslocamento;
+//                } else if(x == 610 && y == 230){
+//                    x -= deslocamento;
 //                }
 
 
-//                emit updateGUI(ID, x,y);    //Emite um sinal
-//                break;
+                emit updateGUI(ID, x,y);    //Emite um sinal
+                break;
 
 
             case 3:
