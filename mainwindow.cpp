@@ -102,6 +102,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
     case 1:
         if(_regiao == 0){
+            printf("ENTRANDO NA REGIAO 0, state: ", trem_por_regiao[ID-1]);
             while(trem_por_regiao[ID-1] == ZONA_LIVRE){
                 printf("REGIAO 0 LIVRE PRA TREM 1 \n");
                 //Trava o "mutex"
@@ -119,14 +120,14 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[0] == 0){
                 (regiao[0]).acquire(1); //trava a regiao 0
-                printf("AGORA ANDE BB de Posição\n");
+                printf("AGORA ANDE\n");
                 trem1->set_x(ui->label_trem1->x()+10);
             }
 
       }
 
         if(_regiao == 2){
-            printf("ENTRANDO NA REGIAO 2");
+            printf("ENTRANDO NA REGIAO 2, state: ", trem_por_regiao[ID-1]);
             while(trem_por_regiao[ID-1] == ZONA_LIVRE){
                 mutex.acquire(1);
 
@@ -144,7 +145,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[ID-1] == 2){
                 (regiao[2]).acquire(1); //trava a regiao 2
-                printf("AGORA ANDE BB de Posição\n");
+                printf("AGORA ANDE");
                 trem1->set_y(ui->label_trem1->y()+10);
             }
         }

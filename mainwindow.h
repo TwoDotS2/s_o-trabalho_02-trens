@@ -5,7 +5,6 @@
 #include <array>
 
 #define ZONA_LIVRE -1
-#define ZONA_OCUPADA 0
 
 static QSemaphore regiao[7]; //semaforos das regioes criticas
 static std::array<int, 5> trem_por_regiao{ZONA_LIVRE, ZONA_LIVRE, ZONA_LIVRE, ZONA_LIVRE, ZONA_LIVRE}; //array que guarda as regiões que cada trem está acessando no momento
