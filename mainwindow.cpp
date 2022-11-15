@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //Cria o trem com seu (ID, posição X, posição Y)
-    trem1 = new Trem(1, 350, 110);
+    trem1 = new Trem(1, 380, 110);
     trem2 = new Trem(2, 610, 160);
     trem3 = new Trem(3, 170, 290);
     trem4 = new Trem(4, 440, 350);
@@ -113,28 +113,30 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
        //Acessar região 0
        if(_regiao == 0){
-
+            printf("ACESSANDO REGIÃO 0");
            while(trem_por_regiao[T1] == ZONA_LIVRE){
-
+             printf("ZONA LIVRE");
                //Trava o "mutex"
                mutex.acquire(1);
 
-               if( trem_por_regiao[T2] != 3 && trem_por_regiao[T4] != 2 )
+               if( trem_por_regiao[T2] != 3 && trem_por_regiao[T4] != 2 ){
+                    printf("PERMITIDO ENTRAR T1 ESTA EM ZONA 0");
                    trem_por_regiao[T1] = 0;
-
+                }
                //Libera o "mutex"
                mutex.release(1);
            }
 
            //Se tem acesso a região, se desloca
            if(trem_por_regiao[T1] == 0){
-               regiao[5].acquire(1);
+               regiao[0].acquire(1);
+               trem1->set_x(ui->label_trem1->x()+10);
            }
        }
 
        //Acessar região 2
         if(_regiao == 2){
-        //printf("ENTRANDO NA REGIAO 2, state: ", trem_por_regiao[T1]);
+        printf("ENTRANDO NA REGIAO 2");
 
             while(trem_por_regiao[T1] == 0){
                 //Trava o "mutex"
@@ -150,7 +152,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[T1] == 2){
                 (regiao[2]).acquire(1);
-                trem1->set_y(ui->label_trem1->x()-10);
+                trem1->set_y(ui->label_trem1->y()+10);
             }
         }
 
@@ -172,7 +174,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[T1] == 1){
                 regiao[1].acquire(1);
-                trem1->set_y(ui->label_trem1->x()-10);
+                trem1->set_x(ui->label_trem1->x()-10);
             }
         }
 
