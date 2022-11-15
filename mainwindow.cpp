@@ -51,11 +51,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     //Sincornização de sair_de_regiao em cada thread
-    connect(trem1,SIGNAL(sair_de_regiao(int)), SLOT(sair_de_regiao(int)));
-    connect(trem2,SIGNAL(sair_de_regiao(int)), SLOT(sair_de_regiao(int)));
-    connect(trem3,SIGNAL(sair_de_regiao(int)), SLOT(sair_de_regiao(int)));
-    connect(trem4,SIGNAL(sair_de_regiao(int)), SLOT(sair_de_regiao(int)));
-    connect(trem5,SIGNAL(sair_de_regiao(int)), SLOT(sair_de_regiao(int)));
+    connect(trem1,SIGNAL(sair_de_regiao(int, int)), SLOT(sair_de_regiao(int, int)));
+    connect(trem2,SIGNAL(sair_de_regiao(int, int)), SLOT(sair_de_regiao(int, int)));
+    connect(trem3,SIGNAL(sair_de_regiao(int, int)), SLOT(sair_de_regiao(int, int)));
+    connect(trem4,SIGNAL(sair_de_regiao(int, int)), SLOT(sair_de_regiao(int, int)));
+    connect(trem5,SIGNAL(sair_de_regiao(int, int)), SLOT(sair_de_regiao(int, int)));
 
 
     //Inicialização das threads
@@ -113,14 +113,14 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
        //Acessar região 0
        if(_regiao == 0){
-            printf("ACESSANDO REGIÃO 0");
+            printf("ACESSANDO REGIÃO 0 \n");
            while(trem_por_regiao[T1] == ZONA_LIVRE){
-             printf("ZONA LIVRE");
+             printf("ZONA LIVRE \n");
                //Trava o "mutex"
                mutex.acquire(1);
 
                if( trem_por_regiao[T2] != 3 && trem_por_regiao[T4] != 2 ){
-                    printf("PERMITIDO ENTRAR T1 ESTA EM ZONA 0");
+                    printf("PERMITIDO ENTRAR T1 ESTA EM ZONA 0 \n");
                    trem_por_regiao[T1] = 0;
                 }
                //Libera o "mutex"
@@ -136,9 +136,9 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
        //Acessar região 2
         if(_regiao == 2){
-        printf("ENTRANDO NA REGIAO 2");
+        printf("ENTRANDO NA REGIAO 2 \n");
 
-            while(trem_por_regiao[T1] == 0){
+            while(trem_por_regiao[T1] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
 
@@ -464,8 +464,10 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
 //Sair da região crítica
 
-void MainWindow::sair_de_regiao(int num_regiao){
+void MainWindow::sair_de_regiao(int num_regiao, int regiao_trem){
     regiao[num_regiao].release(1);
+    trem_por_regiao[regiao_trem - 1] = ZONA_LIVRE;
+
     return;
 }
 

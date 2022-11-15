@@ -34,7 +34,7 @@ public slots:
 
     void entrar_em_regiao(int ID, int regiao);
 
-    void sair_de_regiao(int regiao);
+    void sair_de_regiao(int regiao, int regiao_trem);
 
 private slots:
   void on_slider_vel_trem1_valueChanged(int value);

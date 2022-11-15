@@ -38,20 +38,22 @@ void Trem::run(){
 
                 //Região 0
                 if (x == 420 && y == 110){
-                    printf("VOU ENTRAR AGORA NA REGIÃO 0");
+                    printf("VOU ENTRAR AGORA NA REGIÃO 0 \n");
                     //Entrar na região 0
                     emit entrar_em_regiao(ID, 0);
 
                 } else if(x < 440 && y == 110){
                     x += deslocamento;
 
-                } else if(x == 440 && y < 210){
+                } else if (x == 440 && y == 120){
+                    printf("SAINDO DA REGIÃO 1 \n");
+                    //Sair da região 0
+                    emit sair_de_regiao(0, 1);
+                     y += deslocamento;
+                }
+                else if(x == 440 && y < 210){
                     y += deslocamento;
 
-                } else if (x == 440 && y == 230){
-                    //Sair da região 0
-                    emit sair_de_regiao(0);
-                     x -= deslocamento;
                 }
 
 
@@ -62,10 +64,12 @@ void Trem::run(){
 
                 } else if (x == 350 && y == 230){
                     //Sair da região 2
-                    emit sair_de_regiao(2);
+                    emit sair_de_regiao(2, 1);
                     x -= deslocamento;
                 } else if(x == 440 && y == 220){
                     y += deslocamento;
+                } else if(x == 440 && y == 230){
+                    x -= deslocamento;
                 }
 
 
@@ -76,7 +80,7 @@ void Trem::run(){
 
                 } else if (x == 260 && y == 230){
                     //Sair da região 1
-                    emit sair_de_regiao(1);
+                    emit sair_de_regiao(1, 1);
                     y -= deslocamento;
                 }
 
