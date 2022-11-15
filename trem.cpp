@@ -84,6 +84,13 @@ void Trem::run(){
                 } else if(x < 420 && y == 110){
                     //Segunda lateral
                     x += deslocamento;
+                } else if(x == 430 && y == 110){
+                    x += deslocamento;
+                } else if(x == 440 && y == 110){
+                    printf("VIRA BB");
+                    y += deslocamento;
+                } else if(x == 440 && y > 110){
+                    y += deslocamento;
                 }
 
 

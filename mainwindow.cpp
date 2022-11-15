@@ -54,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Inicialização das threads
     trem1->start();
+    printf("INICIANDO \n");
     trem2->start();
     trem3->start();
     trem4->start();
@@ -102,41 +103,52 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
     case 1:
         if(_regiao == 0){
             while(trem_por_regiao[ID-1] == ZONA_LIVRE){
+                printf("REGIAO 0 LIVRE PRA TREM 1 \n");
                 //Trava o "mutex"
                 mutex.acquire(1);
 
                 //Caso os trens 3, 4 não ocuparem as regiões 2 e 5, respecivamente
                 // o trem 1 pode acesser a região 0
-                if(trem_por_regiao[3] != 2 && trem_por_regiao[4] != 5)
+                if(trem_por_regiao[3] != 2 && trem_por_regiao[4] != 5){
+                    printf("TÁ LIVRE TREM 1 PRA PASSAR \n");
                     trem_por_regiao[0] = 0;
-
+                 }
                 //Libera o "mutex"
                 mutex.release(1);
             }
 
             if(trem_por_regiao[0] == 0){
                 (regiao[0]).acquire(1); //trava a regiao 0
-                trem1->set_y(ui->label_trem1->y()+10);
+                printf("AGORA ANDE BB de Posição\n");
+                trem1->set_x(ui->label_trem1->x()+10);
             }
 
       }
 
-//    else if(regiao == 2){
-//            if(estado_malhas_criticas[2] == ACESSIVEL){
-//                estado_malhas_criticas[2] = INACESSIVEL;
-//                trem1->set_x(ui->label_trem1->x()-10);
-//            }
-//        } else if(regiao == 5){
-//            if(estado_malhas_criticas[5] == ACESSIVEL){
-//                estado_malhas_criticas[5] = INACESSIVEL;
-//                trem1->set_x(ui->label_trem1->x()-10);
-//            }
-//        } else if(regiao == 1){
-//            if(estado_malhas_criticas[1] == ACESSIVEL){
-//                estado_malhas_criticas[1] = INACESSIVEL;
-//                trem1->set_y(ui->label_trem1->y()-10);
-//            }
-//        }
+        if(_regiao == 2){
+            printf("ENTRANDO NA REGIAO 2");
+            while(trem_por_regiao[ID-1] == ZONA_LIVRE){
+                mutex.acquire(1);
+
+                printf("REGIAO 2 LIVRE PRA TREM 1 \n");
+                //Caso os trens 4, 2 não ocuparem as regiões 5, 4 respecivamente
+                // o trem 1 pode acesser a região 2
+                if(trem_por_regiao[4] != 5 && trem_por_regiao[2] != 4){
+                    printf("TÁ LIVRE TREM 1 PRA PASSAR \n");
+                    trem_por_regiao[0] = 0;
+                 }
+                //Libera o "mutex"
+                mutex.release(1);
+
+            }
+
+            if(trem_por_regiao[ID-1] == 2){
+                (regiao[2]).acquire(1); //trava a regiao 2
+                printf("AGORA ANDE BB de Posição\n");
+                trem1->set_y(ui->label_trem1->y()+10);
+            }
+        }
+
         break;
 
     case 2:
