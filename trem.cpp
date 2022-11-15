@@ -107,18 +107,16 @@ void Trem::run(){
                 // O Trem 2 usa as regiões: 4, 3, 0.
 
                 //Região 4
-//                if (x == 610 && y == 210){  //PROBLEMA DE TRAVAMENTO
-//                    //Entrar na região 4
-//                    emit entrar_em_regiao(ID, 4);
-//                } else if (x == 610 && y == 230){
-//                    //Sair da região 4
-//                    emit sair_de_regiao(4, 2);
-//                     x -= deslocamento;
-//                } else if(x == 610 && y == 220){
-//                       y += deslocamento;
-//                  } else if(x < 610 && y == 230){
-//                    x -= deslocamento;
-//                }
+                if (x == 610 && y == 210){  //PROBLEMA DE TRAVAMENTO
+                    //Entrar na região 4
+                    emit entrar_em_regiao(ID, 4);
+                } else if (x == 610 && y == 230){
+                    //Sair da região 4
+                    emit sair_de_regiao(4, 2);
+                     x -= deslocamento;
+                } else if(x == 610 && y == 220){
+                       y += deslocamento;
+                }
 
                 //Região 3
 //                else if (x == 550 && y == 230){
@@ -140,16 +138,16 @@ void Trem::run(){
 //                    x += deslocamento;
 //                }
 
-//                //Zona livre do trem 2
-//                else if ((x > 440 && y == 110) && (x < 610 && y == 110)){
-//                    x += deslocamento;
-//                } else if(x == 610 && y > 110){
-//                    y += deslocamento;
-//                } else if(x == 440 && y > 110){
-//                    y -= deslocamento;
-//                } else if(x == 610 && y == 230){
-//                    x -= deslocamento;
-//                }
+                //Zona livre do trem 2
+                else if (x < 610 && y == 110){ // caminha no superior horizontal
+                    x += deslocamento;
+                } else if(x == 440 && y > 110){ // caminha na lateral esquerda pra cima
+                    y -= deslocamento;
+                } else if(x < 610 && y == 230){ //caminha no inferior horizontal
+                    x -= deslocamento;
+                } else if(x == 610 && y > 110){ //caminha na lateral direita pra baixo
+                    y += deslocamento;
+                }
 
 
                 emit updateGUI(ID, x,y);    //Emite um sinal

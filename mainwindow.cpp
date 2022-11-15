@@ -194,14 +194,14 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
                //Trava o "mutex"
                mutex.acquire(1);
 
-               if( trem_por_regiao[T4] != 3 && trem_por_regiao[T4] != 2 && trem_por_regiao[T5] != 6 )
+               if( trem_por_regiao[T4] != 3 && trem_por_regiao[T4] != 2 && trem_por_regiao[T5] != 6 ){
                    trem_por_regiao[T2] = 4;
-
+                }
                //Libera o "mutex"
                mutex.release(1);
            }
 
-           //Se tem acesso a região, se desloca
+//           Se tem acesso a região, se desloca
            if(trem_por_regiao[T2] == 4){
                regiao[4].acquire(1);
                trem2->set_y(ui->label_trem1->y()+10);
