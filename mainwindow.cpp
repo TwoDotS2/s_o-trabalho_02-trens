@@ -153,27 +153,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
         break;
 
     case 2:
-//        if(regiao == 0){
-//            if(estado_malhas_criticas[0] == ACESSIVEL){
-//                estado_malhas_criticas[0] = INACESSIVEL;
-//                trem1->set_y(ui->label_trem1->y()-10);
-//            }
-//        } else if(regiao == 3){
-//            if(estado_malhas_criticas[3] == ACESSIVEL){
-//                estado_malhas_criticas[3] = INACESSIVEL;
-//                trem1->set_x(ui->label_trem1->x()+10);
-//            }
-//        } else if(regiao == 4){
-//            if(estado_malhas_criticas[4] == ACESSIVEL){
-//                estado_malhas_criticas[4] = INACESSIVEL;
-//                trem1->set_x(ui->label_trem1->x()-10);
-//            }
-//        } else if(regiao == 6){
-//            if(estado_malhas_criticas[6] == ACESSIVEL){
-//                estado_malhas_criticas[6] = INACESSIVEL;
-//                trem1->set_x(ui->label_trem1->x()-10);
-//            }
-//        }
+//
         break;
 
     case 3:
@@ -215,6 +195,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
 void MainWindow::sair_de_regiao(int num_regiao){
     regiao[num_regiao].release(1);
+//    trem_por_regiao[...] = ZONA_LIVRE;
     return;
 }
 
