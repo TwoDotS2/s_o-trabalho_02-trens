@@ -223,14 +223,12 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[T2] == 3){
                 (regiao[3]).acquire(1);
-                trem2->set_y(ui->label_trem2->x()-10);
+                trem2->set_x(ui->label_trem2->x()-10);
             }
         }
 
         //Acessar região 0
         if(_regiao == 0){
-            //printf("ENTRANDO NA REGIAO 0, state: ", trem_por_regiao[T2]);
-
             while(trem_por_regiao[T2] == 3){
                 //Trava o "mutex"
                 mutex.acquire(1);
@@ -245,9 +243,29 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[T2] == 0){
                 regiao[0].acquire(1);
-                trem2->set_y(ui->label_trem2->y()-10);
+                trem2->set_x(ui->label_trem2->x()-10);
             }
         }
+        //Acessar região 6
+        if(_regiao == 6){
+            while(trem_por_regiao[T2] == 4){
+                //Trava o "mutex"
+                mutex.acquire(1);
+
+//              if(/*condição*/)
+                    trem_por_regiao[T2] = 6;
+
+                //Libera o "mutex"
+                mutex.release(1);
+
+            }
+
+            if(trem_por_regiao[T2] == 6){
+                regiao[0].acquire(1);
+                trem2->set_x(ui->label_trem2->x()-10);
+            }
+        }
+
 
         break;
 
