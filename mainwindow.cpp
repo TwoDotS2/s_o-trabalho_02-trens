@@ -103,7 +103,7 @@ MainWindow::~MainWindow()
 //Entrar em região crítica
 
 void MainWindow::entrar_em_regiao(int ID, int _regiao){
-
+    printf("\n ENTRAR_EM_REGIAO : SWITCH -> %d \n", ID);
     switch (ID) {
 
     case 1:
@@ -255,19 +255,20 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
         //Trem 3
         // O Trem 3 usa as regiões: 1, 5.
-
+        printf("AQUI COM TREM 3 ESTÁ MESMO NA REGIAO %d", _regiao);
 
         //Acessar região 1
         if(_regiao == 1){
-            //printf("ENTRANDO NA REGIAO 1, state: ", trem_por_regiao[T3]);
+            printf("DENTRO DA REGIÃO 1 DE TREM 3");
 
             while(trem_por_regiao[T3] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
 
-                if(!(trem_por_regiao[T1] == 2 && trem_por_regiao[T4] == 5))
+                if(!(trem_por_regiao[T1] == 2 && trem_por_regiao[T4] == 5)){
+                    printf("AGORA TREM 3 TA REGISTRADO NA REGIAO 1");
                     trem_por_regiao[T3] = 1;
-
+                }
                 //Libera o "mutex"
                 mutex.release(1);
 
@@ -275,6 +276,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[T3] == 1){
                 regiao[1].acquire(1);
+                printf("VAMOS ANDAR TREM 3!!");
                 trem3->set_x(ui->label_trem3->x()+10);
             }
         }

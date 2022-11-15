@@ -141,14 +141,16 @@ void Trem::run(){
 
 
             case 3:
-            printf("ANALISANDO TREM 3 EM SUAS POSIÇÕES: %d , %d \n", x , y);
+            printf("ANALISANDO TREM %d EM SUAS POSIÇÕES: %d , %d \n", ID, x , y);
                 //Trem 3
                 // O Trem 3 usa as regiões: 1, 5.
 
                 /* ---- REGIÃO 1 ------*/
-                if ((x >= 240 && x < 280) && y == 230){
-                    printf("TREM 3 ENTRANDO DA REGIAO 1 \n");
+                if (x == 240 && y == 230){
+                    printf("TREM %d ENTRANDO DA REGIAO 1 \n", ID);
                     emit entrar_em_regiao(ID, 1);
+                } else if(x > 240 && x < 280 && y == 230){
+                    x += deslocamento;
                 }
                 else if (x == 280 && y == 230){
                     emit sair_de_regiao(1, 3);
