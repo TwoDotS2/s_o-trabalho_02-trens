@@ -95,12 +95,11 @@ void Trem::run(){
 
                 /* ---- REGIÃO 4 ------*/
                 if (x == 610 && y == 210){
-                    printf("TREM 2 ENTRANDO DA REGIAO 4");
+                    printf("TREM 2 ENTRANDO DA REGIAO 4 \n");
                     emit entrar_em_regiao(ID, 4);
-                    printf("COORDENADA ATUAL 4: %d %d", x, y);
                 } else if (x == 610 && y == 230){
                     emit sair_de_regiao(4, 2);
-                    printf("TREM 2 SAINDO DA REGIAO 4 VIRAA");
+                    printf("TREM 2 SAINDO DA REGIAO 4 VIRAA \n");
                      x -= deslocamento;
                 }
 
@@ -142,22 +141,21 @@ void Trem::run(){
 
 
             case 3:
+            printf("ANALISANDO TREM 3 EM SUAS POSIÇÕES: %d , %d \n", x , y);
                 //Trem 3
                 // O Trem 3 usa as regiões: 1, 5.
 
-                //Região 1
-                if (x == 240 && y == 230){
-                    //Entrar na região 1
+                /* ---- REGIÃO 1 ------*/
+                if ((x >= 240 && x < 280) && y == 230){
+                    printf("TREM 3 ENTRANDO DA REGIAO 1 \n");
                     emit entrar_em_regiao(ID, 1);
                 }
-
                 else if (x == 280 && y == 230){
-                    //Sair da região 1
                     emit sair_de_regiao(1, 3);
                      x += deslocamento;
                 }
 
-                //Região 5
+                /* ---- REGIÃO 5 ------*/
                 else if (x == 330 && y == 230){
                     //Entrar na região 5
                     emit entrar_em_regiao(ID, 5);
@@ -167,14 +165,12 @@ void Trem::run(){
                     x -= deslocamento;
                 }
 
-                //Zona livre do trem 3
+                /* ---- ZONA LIVRE ------*/
                 else if (x > 170 && y == 350){
                     x -= deslocamento;
                 } else if (x == 170 && y > 230)
                     y -= deslocamento;
-
                 else if (x < 240 && y == 230){
-                    //Zona livre do trem 3
                     x += deslocamento;
                } else if(x > 280 && y == 230){
                     x += deslocamento;
