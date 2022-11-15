@@ -46,8 +46,6 @@ private slots:
 
   void on_slider_vel_trem5_valueChanged(int value);
 
-  bool caso(int malha_critica, int estado);
-
 private:
     Ui::MainWindow *ui;
 
