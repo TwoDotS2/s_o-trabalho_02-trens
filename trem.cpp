@@ -35,10 +35,12 @@ void Trem::run(){
             case 1:
                 //Trem 1
                 // O Trem 1 usa as regiões: 0, 2, 5, 1.
+
                 //Região 0
                 if (x == 420 && y == 110){
                     //Entrar na região 0
                     emit entrar_em_regiao(ID, 0);
+
                 } else if (x == 440 && y == 230){
                     //Sair da região 0
                     emit sair_de_regiao(0);
@@ -79,9 +81,17 @@ void Trem::run(){
                 else if (x == 260 && y > 110){
                     //Primeira lateral
                     y -= deslocamento;
-                } else if (x < 420 && y == 110)
+                } else if(x < 420 && y == 110){
+                    //Segunda lateral
                     x += deslocamento;
-
+                } else if(x == 430 && y == 110){
+                    x += deslocamento;
+                } else if(x == 440 && y == 110){
+                    printf("VIRA BB");
+                    y += deslocamento;
+                } else if(x == 440 && y > 110){
+                    y += deslocamento;
+                }
 
 
                 emit updateGUI(ID, x, y);    //Emite um sinal
