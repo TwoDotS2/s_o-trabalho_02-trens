@@ -16,6 +16,7 @@ static QSemaphore mutex; //mutex para controlar a mudanca de estado
 
 
 namespace Ui {
+
 class MainWindow;
 }
 

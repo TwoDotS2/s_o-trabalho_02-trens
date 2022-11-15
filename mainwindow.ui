@@ -17,7 +17,7 @@
    <widget class="QLabel" name="label_trem1">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>280</x>
       <y>110</y>
       <width>21</width>
       <height>17</height>
@@ -116,8 +116,8 @@
    <widget class="QLabel" name="label_trem2">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>230</y>
+      <x>610</x>
+      <y>160</y>
       <width>21</width>
       <height>17</height>
      </rect>
@@ -212,8 +212,8 @@
    <widget class="QLabel" name="label_trem3">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>230</y>
+      <x>170</x>
+      <y>290</y>
       <width>21</width>
       <height>17</height>
      </rect>
@@ -228,7 +228,7 @@
    <widget class="QLabel" name="label_trem4">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>440</x>
       <y>350</y>
       <width>21</width>
       <height>17</height>
@@ -244,7 +244,7 @@
    <widget class="QLabel" name="label_trem5">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>710</x>
       <y>280</y>
       <width>21</width>
       <height>17</height>

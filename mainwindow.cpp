@@ -95,12 +95,12 @@ MainWindow::~MainWindow()
 
 //Entrar em região crítica
 
-void MainWindow::entrar_em_regiao(int ID, int regiao){
+void MainWindow::entrar_em_regiao(int ID, int num_regiao){
 
     switch (ID) {
 
     case 1:
-        if(regiao == 0){
+        if(num_regiao == 0){
             while(trem_por_regiao[ID-1] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
