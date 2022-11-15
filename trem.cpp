@@ -36,34 +36,19 @@ void Trem::run(){
                 //Trem 1
                 // O Trem 1 usa as regiões: 0, 2, 1.
 
-                //Região 0
+                 /* ---- REGIÃO 0 ------*/
                 if (x == 420 && y == 110){
-                    printf("VOU ENTRAR AGORA NA REGIÃO 0 \n");
-                    //Entrar na região 0
                     emit entrar_em_regiao(ID, 0);
-
-                } else if(x < 440 && y == 110){
-                    x += deslocamento;
-
                 } else if (x == 440 && y == 120){
-                    printf("SAINDO DA REGIÃO 1 \n");
-                    //Sair da região 0
                     emit sair_de_regiao(0, 1);
                      y += deslocamento;
                 }
-                else if(x == 440 && y < 210){
-                    y += deslocamento;
 
-                }
-
-
-                //Região 2
+                /* ---- REGIÃO 2 ------*/
                 else if (x == 440 && y == 210){
-                    //Entrar na região 2
                     emit entrar_em_regiao(ID, 2);
 
                 } else if (x == 350 && y == 230){
-                    //Sair da região 2
                     emit sair_de_regiao(2, 1);
                     x -= deslocamento;
                 } else if(x == 440 && y == 220){
@@ -73,30 +58,27 @@ void Trem::run(){
                 }
 
 
-                //Região 1
+                /* ---- REGIÃO 1 ------*/
                 else if (x == 370 && y == 230){
-                    //Entrar na região 1
                     emit entrar_em_regiao(ID, 1);
 
                 } else if (x == 260 && y == 230){
-                    //Sair da região 1
                     emit sair_de_regiao(1, 1);
                     y -= deslocamento;
                 }
 
-
-
-                //Zona livre do trem 1
+                /* ---- ZONA LIVRE ------*/
                 else if (x == 260 && y > 110){
-                    //Primeira lateral
                     y -= deslocamento;
                 } else if(x < 420 && y == 110){
-                    //Segunda lateral
                     x += deslocamento;
                 } else if(x < 440 && y == 230){
                     x -= deslocamento;
+                } else if(x < 440 && y == 110){
+                       x += deslocamento;
+                } else if(x == 440 && y < 210){
+                    y += deslocamento;
                 }
-
 
                 emit updateGUI(ID, x, y);    //Emite um sinal
                 break;
@@ -118,25 +100,25 @@ void Trem::run(){
                        y += deslocamento;
                 }
 
-                //Região 3
-//                else if (x == 550 && y == 230){
-//                    //Entrar na região 3
-//                    emit entrar_em_regiao(ID, 3);
-//                } else if (x == 440 && y == 230){
-//                    //Sair da região 3
-//                    emit sair_de_regiao(3, 2);
-//                    y -= deslocamento;
-//                }
+              //  Região 3
+                else if (x == 550 && y == 230){
+                    //Entrar na região 3
+                    emit entrar_em_regiao(ID, 3);
+                } else if (x == 440 && y == 230){
+                    //Sair da região 3
+                    emit sair_de_regiao(3, 2);
+                    y -= deslocamento;
+                }
 
-//                //Região 0
-//                else if (x == 460 && y == 230){
-//                    //Entrar na região 0
-//                    emit entrar_em_regiao(ID, 0);
-//                } else if (x == 440 && y == 110){
-//                    //Sair da região 0
-//                    emit sair_de_regiao(0, 2);
-//                    x += deslocamento;
-//                }
+                //Região 0
+                else if (x == 460 && y == 230){
+                    //Entrar na região 0
+                    emit entrar_em_regiao(ID, 0);
+                } else if (x == 440 && y == 110){
+                    //Sair da região 0
+                    emit sair_de_regiao(0, 2);
+                    x += deslocamento;
+                }
 
                 //Zona livre do trem 2
                 else if (x < 610 && y == 110){ // caminha no superior horizontal
@@ -145,7 +127,7 @@ void Trem::run(){
                     y -= deslocamento;
                 } else if(x < 610 && y == 230){ //caminha no inferior horizontal
                     x -= deslocamento;
-                } else if(x == 610 && y > 110){ //caminha na lateral direita pra baixo
+                } else if(x == 610 && y >= 110){ //caminha na lateral direita pra baixo
                     y += deslocamento;
                 }
 
@@ -155,45 +137,49 @@ void Trem::run(){
 
 
             case 3:
-//                //Trem 3
-//                // O Trem 3 usa as regiões: 1, 5.
+                //Trem 3
+                // O Trem 3 usa as regiões: 1, 5.
 
-//                //Região 1
-//                if (x == 240 && y == 230){
-//                    //Entrar na região 1
-//                    emit entrar_em_regiao(ID, 1);
-//                }
+                //Região 1
+                if (x == 240 && y == 230){
+                    //Entrar na região 1
+                    emit entrar_em_regiao(ID, 1);
+                }
 
-//                else if (x == 350 && y == 230){
-//                    //Sair da região 1
-//                    emit sair_de_regiao(1);
-//                     y += deslocamento;
-//                }
+                else if (x == 280 && y == 230){
+                    //Sair da região 1
+                    emit sair_de_regiao(1, 3);
+                     x += deslocamento;
+                }
 
-//                //Região 5
-//                else if (x == 330 && y == 230){
-//                    //Entrar na região 5
-//                    emit entrar_em_regiao(ID, 5);
-//                } else if (x == 350 && y == 350){
-//                    //Sair da região 5
-//                    emit sair_de_regiao(5);
-//                    x -= deslocamento;
-//                }
+                //Região 5
+                else if (x == 330 && y == 230){
+                    //Entrar na região 5
+                    emit entrar_em_regiao(ID, 5);
+                } else if (x == 350 && y == 350){
+                    //Sair da região 5
+                    emit sair_de_regiao(5, 3);
+                    x -= deslocamento;
+                }
 
-//                //Zona livre do trem 3
-//                else if (x > 170 && y == 350){
-//                    x -= deslocamento;
-//                } else if (x == 170 && y > 230)
-//                    y -= deslocamento;
+                //Zona livre do trem 3
+                else if (x > 170 && y == 350){
+                    x -= deslocamento;
+                } else if (x == 170 && y > 230)
+                    y -= deslocamento;
 
-//                else if (x < 240 && y == 230){
-//                    //Zona livre do trem 3
-//                    x += deslocamento;
-//               }
+                else if (x < 240 && y == 230){
+                    //Zona livre do trem 3
+                    x += deslocamento;
+               } else if(x > 280 && y == 230){
+                    x += deslocamento;
+               } else if(x == 350 && y < 350){
+                    y += deslocamento;
+               }
 
 
-//                emit updateGUI(ID, x, y);    //Emite um sinal
-//                break;
+                emit updateGUI(ID, x, y);    //Emite um sinal
+                break;
 
             case 4:
 //                //Trem 4
