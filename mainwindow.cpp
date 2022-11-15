@@ -1,21 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "string.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <QSemaphore>
-
-int estado_malhas_criticas[7]; // Vetor para controlar o estado de cada malha crítica
-
-//Semaforos de cada região
-QSemaphore semaforo_0(1);
-QSemaphore semaforo_1(1);
-QSemaphore semaforo_2(1);
-QSemaphore semaforo_3(1);
-QSemaphore semaforo_4(1);
-QSemaphore semaforo_5(1);
-QSemaphore semaforo_6(1);
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,6 +13,13 @@ MainWindow::MainWindow(QWidget *parent) :
     trem3 = new Trem(3, 170, 290);
     trem4 = new Trem(4, 440, 350);
     trem5 = new Trem(5, 710, 290);
+
+    //Inicializa o semaforo das regiões
+    for(int i=0; i<7; i++){
+        regiao[i].release(1);
+    }
+    //inicializa o mutex
+    mutex.release(1);
 
     /*
      * Conecta o sinal UPDATEGUI à função UPDATEINTERFACE.
@@ -102,10 +93,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-bool MainWindow::caso(int malha_critica, int estado){
-    return malha_critica == estado ? true : false;
-}
-
 //Entrar em região crítica
 
 void MainWindow::entrar_em_regiao(int ID, int regiao){
@@ -114,8 +101,24 @@ void MainWindow::entrar_em_regiao(int ID, int regiao){
 
     case 1:
         if(regiao == 0){
+            while(trem_por_regiao[ID-1] == ZONA_LIVRE){
+                //Trava o "mutex"
+                mutex.acquire(1);
 
-            trem1->set_y(ui->label_trem1->y()+10);
+                //Caso os trens 3, 4 não ocuparem as regiões 2 e 5, respecivamente
+                // o trem 1 pode acesser a região 0
+                if(trem_por_regiao[3] != 2 && trem_por_regiao[4] != 5)
+                    trem_por_regiao[0] = 0;
+
+                //Libera o "mutex"
+                mutex.release(1);
+            }
+
+            if(trem_por_regiao[0] == 0){
+                (regiao[0]).acquire(1); //trava a regiao 0
+                trem1->set_y(ui->label_trem1->y()+10);
+            }
+
       }
 
 //    else if(regiao == 2){
@@ -197,77 +200,9 @@ void MainWindow::entrar_em_regiao(int ID, int regiao){
 
 //Sair da região crítica
 
-void MainWindow::sair_de_regiao(int regiao){
-    if (regiao == 0){
-        semaforo_0.release();
-        return;
-    }
-
-    if (regiao == 1){
-        semaforo_1.release();
-        return;
-    }
-
-    if (regiao == 2){
-        semaforo_2.release();
-        return;
-    }
-
-    if (regiao == 3){
-        semaforo_3.release();
-        return;
-    }
-
-    if (regiao == 4){
-        semaforo_4.release();
-        return;
-    }
-    if (regiao == 5){
-        semaforo_5.release();
-        return;
-    }
-
-    if (regiao == 6){
-        semaforo_6.release();
-        return;
-    }
-}
-
-
-void MainWindow::solicitar_semaforo(int regiao){
-    if (regiao == 0){
-        semaforo_0.acquire();
-        return;
-    }
-
-    if (regiao == 1){
-        semaforo_1.acquire();
-        return;
-    }
-
-    if (regiao == 2){
-        semaforo_2.acquire();
-        return;
-    }
-
-    if (regiao == 3){
-        semaforo_3.acquire();
-        return;
-    }
-
-    if (regiao == 4){
-        semaforo_4.acquire();
-        return;
-    }
-    if (regiao == 5){
-        semaforo_5.acquire();
-        return;
-    }
-
-    if (regiao == 6){
-        semaforo_6.acquire();
-        return;
-    }
+void MainWindow::sair_de_regiao(int num_regiao){
+    regiao[num_regiao].release(1);
+    return;
 }
 
 //Sliders

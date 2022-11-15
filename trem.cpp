@@ -1,5 +1,7 @@
 #include "trem.h"
+#include "mainwindow.h"
 #include <QtCore>
+#include <iostream>
 
 Trem::Trem(int ID, int x, int y){
     this->ID = ID;
@@ -38,6 +40,7 @@ void Trem::run(){
                 if (x == 420 && y == 110){
                     //Entrar na região 0
                     emit entrar_em_regiao(ID, 0);
+
                 } else if (x == 440 && y == 230){
                     //Sair da região 0
                     emit sair_de_regiao(0);
