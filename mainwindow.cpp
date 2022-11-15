@@ -187,8 +187,6 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
        //Acessar região 4
        if(_regiao == 4){
-         printf("ENTRANDO NA REGIAO 4");
-
            while(trem_por_regiao[T2] == ZONA_LIVRE){
 
                //Trava o "mutex"
@@ -203,55 +201,53 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
 //           Se tem acesso a região, se desloca
            if(trem_por_regiao[T2] == 4){
-               printf("ACESSO A REGIÃO 4 \n");
+               printf("\n TREM 2 TEM ACESSO A REGIÃO 4 \n");
                regiao[4].acquire(1);
-               trem2->set_y(ui->label_trem1->y()+0);
+               trem2->set_y(ui->label_trem2->y()+10);
            }
        }
 
-//       //Acessar região 3
-//        if(_regiao == 3){
-//        //printf("ENTRANDO NA REGIAO 3, state: ", trem_por_regiao[T2]);
+       //Acessar região 3
+        if(_regiao == 3){
+            while(trem_por_regiao[T2] == 4){
+                //Trava o "mutex"
+                mutex.acquire(1);
 
-//            while(trem_por_regiao[T2] == 4){
-//                //Trava o "mutex"
-//                mutex.acquire(1);
+                if(!(trem_por_regiao[T1] == 0 && trem_por_regiao[T4] == 2))
+                    trem_por_regiao[T2] = 3;
 
-//                if(!(trem_por_regiao[T1] == 0 && trem_por_regiao[T4] == 2))
-//                    trem_por_regiao[T2] = 3;
+                //Libera o "mutex"
+                mutex.release(1);
 
-//                //Libera o "mutex"
-//                mutex.release(1);
+            }
 
-//            }
+            if(trem_por_regiao[T2] == 3){
+                (regiao[3]).acquire(1);
+                trem2->set_y(ui->label_trem2->x()-10);
+            }
+        }
 
-//            if(trem_por_regiao[T2] == 3){
-//                (regiao[3]).acquire(1);
-//                trem2->set_y(ui->label_trem1->x()-10);
-//            }
-//        }
+        //Acessar região 0
+        if(_regiao == 0){
+            //printf("ENTRANDO NA REGIAO 0, state: ", trem_por_regiao[T2]);
 
-//        //Acessar região 0
-//        if(_regiao == 0){
-//            //printf("ENTRANDO NA REGIAO 0, state: ", trem_por_regiao[T2]);
-
-//            while(trem_por_regiao[T2] == 3){
-//                //Trava o "mutex"
-//                mutex.acquire(1);
+            while(trem_por_regiao[T2] == 3){
+                //Trava o "mutex"
+                mutex.acquire(1);
 
 //              if(/*condição*/)
-//                    trem_por_regiao[T2] = 0;
+                    trem_por_regiao[T2] = 0;
 
-//                //Libera o "mutex"
-//                mutex.release(1);
+                //Libera o "mutex"
+                mutex.release(1);
 
-//            }
+            }
 
-//            if(trem_por_regiao[T2] == 0){
-//                regiao[0].acquire(1);
-//                trem2->set_y(ui->label_trem1->y()-10);
-//            }
-//        }
+            if(trem_por_regiao[T2] == 0){
+                regiao[0].acquire(1);
+                trem2->set_y(ui->label_trem2->y()-10);
+            }
+        }
 
         break;
 
@@ -279,7 +275,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
             if(trem_por_regiao[T3] == 1){
                 regiao[1].acquire(1);
-                trem3->set_x(ui->label_trem1->x()+10);
+                trem3->set_x(ui->label_trem3->x()+10);
             }
         }
 
@@ -302,7 +298,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
            //Se tem acesso a região, se desloca
            if(trem_por_regiao[T3] == 5){
                regiao[5].acquire(1);
-               trem3->set_x(ui->label_trem1->y()+10);
+               trem3->set_x(ui->label_trem3->y()+10);
            }
        }
 

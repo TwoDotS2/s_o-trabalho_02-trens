@@ -55,8 +55,8 @@ signals:
     void sair_de_regiao(int regiao, int regiao_trem);
 
 private:
-   int x;           //posição X do trem na tela
-   int y;           //posição Y do trem na tela
+   int x = 0;           //posição X do trem na tela
+   int y = 0;           //posição Y do trem na tela
    int ID;          //ID do trem
    int velocidade;  //Velocidade. É o tempo de dormir em milisegundos entre a mudança de posição do trem
 };

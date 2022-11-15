@@ -8,6 +8,7 @@ Trem::Trem(int ID, int x, int y){
     this->x = x;
     this->y = y;
     velocidade = 100;
+    printf(" ---> POSIÇÃO TREM %d é %d , %d \n", this->ID, this->x, this->y);
 }
 
 void Trem::set_velocidade(int vel){
@@ -35,13 +36,14 @@ void Trem::run(){
             case 1:
                 //Trem 1
                 // O Trem 1 usa as regiões: 0, 2, 1.
-
+            printf("ANALISANDO TREM 1 EM SUAS POSIÇÕES: %d , %d \n", x , y);
                  /* ---- REGIÃO 0 ------*/
                 if (x == 420 && y == 110){
                     emit entrar_em_regiao(ID, 0);
                 } else if (x == 440 && y == 120){
                     emit sair_de_regiao(0, 1);
                      y += deslocamento;
+                     printf("SAINDO DA REGIÃO 0");
                 }
 
                 /* ---- REGIÃO 2 ------*/
@@ -51,6 +53,7 @@ void Trem::run(){
                 } else if (x == 350 && y == 230){
                     emit sair_de_regiao(2, 1);
                     x -= deslocamento;
+                    printf("SAINDO DA REGIÃO 2");
                 } else if(x == 440 && y == 220){
                     y += deslocamento;
                 } else if(x == 440 && y == 230){
@@ -64,6 +67,7 @@ void Trem::run(){
 
                 } else if (x == 260 && y == 230){
                     emit sair_de_regiao(1, 1);
+                    printf("SAINDO DA REGIÃO 1");
                     y -= deslocamento;
                 }
 
@@ -85,32 +89,30 @@ void Trem::run(){
 
 
             case 2:
+            printf("ANALISANDO TREM 2 EM SUAS POSIÇÕES: %d , %d \n", x , y);
                 //Trem 2
                 // O Trem 2 usa as regiões: 4, 3, 0.
 
-                //Região 4
-                if (x == 610 && y == 210){  //PROBLEMA DE TRAVAMENTO
-                    //Entrar na região 4
+                /* ---- REGIÃO 4 ------*/
+                if (x == 610 && y == 210){
+                    printf("TREM 2 ENTRANDO DA REGIAO 4");
                     emit entrar_em_regiao(ID, 4);
+                    printf("COORDENADA ATUAL 4: %d %d", x, y);
                 } else if (x == 610 && y == 230){
-                    //Sair da região 4
                     emit sair_de_regiao(4, 2);
+                    printf("TREM 2 SAINDO DA REGIAO 4 VIRAA");
                      x -= deslocamento;
-                } else if(x == 610 && y == 220){
-                       y += deslocamento;
                 }
 
-              //  Região 3
+              /* ---- REGIÃO 3 ------*/
                 else if (x == 550 && y == 230){
-                    //Entrar na região 3
                     emit entrar_em_regiao(ID, 3);
                 } else if (x == 440 && y == 230){
-                    //Sair da região 3
                     emit sair_de_regiao(3, 2);
                     y -= deslocamento;
                 }
 
-                //Região 0
+                /* ---- REGIÃO 0 ------*/
                 else if (x == 460 && y == 230){
                     //Entrar na região 0
                     emit entrar_em_regiao(ID, 0);
@@ -120,16 +122,19 @@ void Trem::run(){
                     x += deslocamento;
                 }
 
-                //Zona livre do trem 2
+                /* ---- ZONA LIVRE ------*/
                 else if (x < 610 && y == 110){ // caminha no superior horizontal
                     x += deslocamento;
                 } else if(x == 440 && y > 110){ // caminha na lateral esquerda pra cima
                     y -= deslocamento;
                 } else if(x < 610 && y == 230){ //caminha no inferior horizontal
                     x -= deslocamento;
-                } else if(x == 610 && y >= 110){ //caminha na lateral direita pra baixo
+                } else if(x == 610 && y == 220){
+                    printf("DESLOQUE SO MAIS UM");
                     y += deslocamento;
-                }
+                } else if(x == 610 && y >= 110){ //caminha na lateral direita pra baixo
+                    y += deslocamento;}
+//                } else if(x == 610 && y == 230){}
 
 
                 emit updateGUI(ID, x,y);    //Emite um sinal
