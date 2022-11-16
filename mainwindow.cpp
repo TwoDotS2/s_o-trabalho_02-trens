@@ -168,7 +168,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
         if(_regiao == 1){
             //printf("ENTRANDO NA REGIAO 1, state: ", trem_por_regiao[T1]);
 
-            while(trem_por_regiao[T1] == 2){
+            while(trem_por_regiao[T1] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
 
@@ -196,7 +196,11 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
        //Acessar região 4
        if(_regiao == 4){
            while(trem_por_regiao[T2] == ZONA_LIVRE){
+<<<<<<< HEAD
                printf("T2 IS FREE ZONE");
+=======
+                printf("T2 IS FREE ZONE");
+>>>>>>> 3fe2fdef259e4fcdaa04fa2a7adfbd83bacb606c
                //Trava o "mutex"
                mutex.acquire(1);
 
