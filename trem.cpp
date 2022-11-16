@@ -34,7 +34,6 @@ void Trem::run(){
 
         switch(ID){
             case 1:
-<<<<<<< HEAD
             //Trem 1
            //Quinas: Sentido do movimento do trem
                //min_x: 260
@@ -58,7 +57,6 @@ void Trem::run(){
                }
                else { x += 10; }
            }
-=======
                 //Trem 1
                 // O Trem 1 usa as regiões: 0, 2, 1.
             printf("ANALISANDO TREM 1 EM SUAS POSIÇÕES: %d , %d \n", x , y);
@@ -66,7 +64,7 @@ void Trem::run(){
                 if (x == 420 && y == 110){
                     emit entrar_em_regiao(ID, 0);
                 } else if (x == 440 && y == 120){
-                    emit sair_de_regiao(0, 1);
+                    emit sair_de_regiao(0);
                      y += deslocamento;
                      printf("SAINDO DA REGIÃO 0");
                 }
@@ -76,7 +74,7 @@ void Trem::run(){
                     emit entrar_em_regiao(ID, 2);
 
                 } else if (x == 380 && y == 230){
-                    emit sair_de_regiao(2, 1);
+                    emit sair_de_regiao(2);
                     x -= deslocamento;
                     printf("SAINDO DA REGIÃO 2");
                 } else if(x == 440 && y == 220){
@@ -91,7 +89,7 @@ void Trem::run(){
                     emit entrar_em_regiao(ID, 1);
 
                 } else if (x == 260 && y == 230){
-                    emit sair_de_regiao(1, 1);
+                    emit sair_de_regiao(1);
                     printf("SAINDO DA REGIÃO 1");
                     y -= deslocamento;
                 }
@@ -109,7 +107,6 @@ void Trem::run(){
                 } else if(x == 440 && y < 210){
                     y += deslocamento;
                 }
->>>>>>> 3fe2fdef259e4fcdaa04fa2a7adfbd83bacb606c
 
            else if (x == 440 && y <= 230){
                if(y == 210){
@@ -157,7 +154,6 @@ void Trem::run(){
 //                else if (x == 440 && y == 210){
 //                    emit entrar_em_regiao(ID, 2);
 
-<<<<<<< HEAD
 //                } else if (x == 380 && y == 230){
 //                    emit sair_de_regiao(2, 1);
 //                    x -= deslocamento;
@@ -172,7 +168,6 @@ void Trem::run(){
 //                /* ---- REGIÃO 1 ------*/
 //                else if (x == 370 && y == 230){
 //                    emit entrar_em_regiao(ID, 1);
-=======
             case 2:
             printf("ANALISANDO TREM 2 EM SUAS POSIÇÕES: %d , %d \n", x , y);
                 //Trem 2
@@ -193,7 +188,7 @@ void Trem::run(){
                     emit entrar_em_regiao(ID, 3);
                 } else if (x == 470 && y == 230){
                     printf("TREM 2 SAINDO DA REGIAO 3 \n");
-                    emit sair_de_regiao(3, 2);
+                    emit sair_de_regiao(3);
                     x -= deslocamento;
                 }
 
@@ -202,7 +197,7 @@ void Trem::run(){
                     printf("TREM 2 ENTRANDO NA REGIÃO 0 \n");
                     emit entrar_em_regiao(ID, 0);
                 } else if (x == 440 && y == 110){
-                    emit sair_de_regiao(0, 2);
+                    emit sair_de_regiao(0);
                     x += deslocamento;
                 }
 
@@ -244,7 +239,7 @@ void Trem::run(){
                     x += deslocamento;
                 }
                 else if (x == 280 && y == 230){
-                    emit sair_de_regiao(1, 3);
+                    emit sair_de_regiao(1);
                      x += deslocamento;
                 }
 
@@ -254,7 +249,7 @@ void Trem::run(){
                     emit entrar_em_regiao(ID, 5);
                 } else if (x == 350 && y == 250){
                    printf("TREM %d SAINDO DA REGIAO 5 \n", ID);
-                    emit sair_de_regiao(5, 3);
+                    emit sair_de_regiao(5);
                     y += deslocamento;
                 } else if(x == 350 && y == 230){
                     y += deslocamento;
@@ -272,7 +267,6 @@ void Trem::run(){
                } else if(x == 350 && y < 350){
                     y += deslocamento;
                }
->>>>>>> 3fe2fdef259e4fcdaa04fa2a7adfbd83bacb606c
 
 //                } else if (x == 260 && y == 230){
 //                    emit sair_de_regiao(1, 1);
@@ -296,8 +290,8 @@ void Trem::run(){
 
 //                emit updateGUI(ID, x, y);    //Emite um sinal
 
-               break;
-            case 2:
+//               break;
+//            case 2:
 //            printf("ANALISANDO TREM 2 EM SUAS POSIÇÕES: %d , %d \n", x , y);
 //                //Trem 2
 //                // O Trem 2 usa as regiões: 4, 3, 0.
@@ -354,7 +348,7 @@ void Trem::run(){
 //                emit updateGUI(ID, x,y);    //Emite um sinal
 
 
-            case 3:
+//            case 3:
 
 //            printf("ANALISANDO TREM %d EM SUAS POSIÇÕES: %d , %d \n", ID, x , y);
 //                //Trem 3
