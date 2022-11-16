@@ -7,7 +7,11 @@
 #define ZONA_LIVRE -1
 
 static QSemaphore regiao[7]; //semaforos das regioes criticas
-static std::array<int, 5> trem_por_regiao{ZONA_LIVRE, ZONA_LIVRE, ZONA_LIVRE, ZONA_LIVRE, ZONA_LIVRE}; //array que guarda as regiões que cada trem está acessando no momento
+static std::array<int, 5> trem_por_regiao{ ZONA_LIVRE,
+                                                                    ZONA_LIVRE,
+                                                                    ZONA_LIVRE,
+                                                                    ZONA_LIVRE,
+                                                                    ZONA_LIVRE}; //array que guarda as regiões que cada trem está acessando no momento
 static QSemaphore mutex; //mutex para controlar a mudanca de estado
 
 #include <QMainWindow>
@@ -34,7 +38,9 @@ public slots:
 
     void entrar_em_regiao(int ID, int regiao);
 
-    void sair_de_regiao(int regiao, int regiao_trem);
+    void sair_de_regiao(int regiao);
+
+     void ir_para_zona_livre(int regiao, int trem);
 
 private slots:
   void on_slider_vel_trem1_valueChanged(int value);

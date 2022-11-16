@@ -34,223 +34,293 @@ void Trem::run(){
 
         switch(ID){
             case 1:
-                //Trem 1
-                // O Trem 1 usa as regiões: 0, 2, 1.
-            printf("ANALISANDO TREM 1 EM SUAS POSIÇÕES: %d , %d \n", x , y);
-                 /* ---- REGIÃO 0 ------*/
-                if (x == 420 && y == 110){
-                    emit entrar_em_regiao(ID, 0);
-                } else if (x == 440 && y == 120){
-                    emit sair_de_regiao(0, 1);
-                     y += deslocamento;
-                     printf("SAINDO DA REGIÃO 0");
-                }
+            //Trem 1
+           //Quinas: Sentido do movimento do trem
+               //min_x: 260
+               //max_x: 440
 
-                /* ---- REGIÃO 2 ------*/
-                else if (x == 440 && y == 210){
-                    emit entrar_em_regiao(ID, 2);
+               //min_y: 110
+               //max_y: 230
 
-                } else if (x == 350 && y == 230){
-                    emit sair_de_regiao(2, 1);
-                    x -= deslocamento;
-                    printf("SAINDO DA REGIÃO 2");
-                } else if(x == 440 && y == 220){
-                    y += deslocamento;
-                } else if(x == 440 && y == 230){
-                    x -= deslocamento;
-                }
+           //Quina 1
+               //x == 260 && y == 110
+           //Quina 2
+               //x == 440 && y == 110
+           //Quina 3
+               //x == 260 && y == 230
+           //Quina 4
+               //x == 440 && y == 230
+
+           if (x < 440 && y == 110){
+               if(x == 420){
+                   emit entrar_em_regiao(ID, 0);
+               }
+               else { x += 10; }
+           }
+
+           else if (x == 440 && y <= 230){
+               if(y == 210){
+                   emit entrar_em_regiao(ID, 2);
+               }
+               if(y == 230){
+                   emit sair_de_regiao(0);
+                   x-=10;
+               }
+               else y += 10;
+           }
+
+           else if (x >= 260 && y == 230){
+                   if(x == 370){
+                       emit entrar_em_regiao(ID, 1);
+                   }
+                   else if(x == 350){
+                       emit sair_de_regiao(2);
+                       x-=10;
+                   }
+                   else if(x == 260){
+                       emit ir_para_zona_livre(0, 1);
+                       y -= 10;
+                   }
+                   else x-=10;
+           }
+               else y-=10;
+
+           emit updateGUI(ID, x,y);    //Emite um sinal
 
 
-                /* ---- REGIÃO 1 ------*/
-                else if (x == 370 && y == 230){
-                    emit entrar_em_regiao(ID, 1);
+//                //Trem 1
+//                // O Trem 1 usa as regiões: 0, 2, 1.
+//            printf("ANALISANDO TREM 1 EM SUAS POSIÇÕES: %d , %d \n", x , y);
+//                 /* ---- REGIÃO 0 ------*/
+//                if (x == 420 && y == 110){
+//                    emit entrar_em_regiao(ID, 0);
+//                } else if (x == 440 && y == 120){
+//                    emit sair_de_regiao(0, 1);
+//                     y += deslocamento;
+//                     printf("SAINDO DA REGIÃO 0");
+//                }
 
-                } else if (x == 260 && y == 230){
-                    emit sair_de_regiao(1, 1);
-                    printf("SAINDO DA REGIÃO 1");
-                    y -= deslocamento;
-                }
+//                /* ---- REGIÃO 2 ------*/
+//                else if (x == 440 && y == 210){
+//                    emit entrar_em_regiao(ID, 2);
 
-                /* ---- ZONA LIVRE ------*/
-                else if (x == 260 && y > 110){
-                    y -= deslocamento;
-                } else if(x < 420 && y == 110){
-                    x += deslocamento;
-                } else if(x < 440 && y == 230){
-                    x -= deslocamento;
-                } else if(x < 440 && y == 110){
-                       x += deslocamento;
-                } else if(x == 440 && y < 210){
-                    y += deslocamento;
-                }
-
-                emit updateGUI(ID, x, y);    //Emite um sinal
-                break;
+//                } else if (x == 380 && y == 230){
+//                    emit sair_de_regiao(2, 1);
+//                    x -= deslocamento;
+//                    printf("SAINDO DA REGIÃO 2");
+//                } else if(x == 440 && y == 220){
+//                    y += deslocamento;
+//                } else if(x == 440 && y == 230){
+//                    x -= deslocamento;
+//                }
 
 
+//                /* ---- REGIÃO 1 ------*/
+//                else if (x == 370 && y == 230){
+//                    emit entrar_em_regiao(ID, 1);
+
+//                } else if (x == 260 && y == 230){
+//                    emit sair_de_regiao(1, 1);
+//                    printf("SAINDO DA REGIÃO 1");
+//                    y -= deslocamento;
+//                }
+
+
+//                /* ---- ZONA LIVRE ------*/
+//                else if (x == 260 && y > 110){
+//                    y -= deslocamento;
+//                } else if(x < 420 && y == 110){
+//                    x += deslocamento;
+//                } else if(x < 440 && y == 230){
+//                    x -= deslocamento;
+//                } else if(x < 440 && y == 110){
+//                       x += deslocamento;
+//                } else if(x == 440 && y < 210){
+//                    y += deslocamento;
+//                }
+
+//                emit updateGUI(ID, x, y);    //Emite um sinal
+
+               break;
             case 2:
-            printf("ANALISANDO TREM 2 EM SUAS POSIÇÕES: %d , %d \n", x , y);
-                //Trem 2
-                // O Trem 2 usa as regiões: 4, 3, 0.
+//            printf("ANALISANDO TREM 2 EM SUAS POSIÇÕES: %d , %d \n", x , y);
+//                //Trem 2
+//                // O Trem 2 usa as regiões: 4, 3, 0.
 
-                /* ---- REGIÃO 4 ------*/
-                if (x == 610 && y == 210){
-                    printf("TREM 2 ENTRANDO DA REGIAO 4 \n");
-                    emit entrar_em_regiao(ID, 4);
-                } else if (x == 610 && y == 230){
-                    printf("TREM 2  VIRAA \n");
-                     x -= deslocamento;
-                }
+//                /* ---- REGIÃO 4 ------*/
+//                if (x == 610 && y == 210){
+//                    printf("TREM 2 ENTRANDO DA REGIAO 4 \n");
+//                    emit entrar_em_regiao(ID, 4);
+//                } else if (x == 610 && y == 230){
+//                    printf("TREM 2  VIRAA \n");
+//                     x -= deslocamento;
+//                }
 
-              /* ---- REGIÃO 3 ------*/
-                else if (x == 550 && y == 230){
-                    printf("TREM 2 ENTRANDO DA REGIAO 3 \n");
-                    emit entrar_em_regiao(ID, 3);
-                } else if (x == 440 && y == 230){
-                    emit sair_de_regiao(3, 2);
-                    y -= deslocamento;
-                }
+//              /* ---- REGIÃO 3 ------*/
+//                else if (x == 550 && y == 230){
+//                    printf("TREM 2 ENTRANDO DA REGIAO 3 \n");
+//                    emit entrar_em_regiao(ID, 3);
+//                } else if (x == 470 && y == 230){
+//                    printf("TREM 2 SAINDO DA REGIAO 3 \n");
+//                    emit sair_de_regiao(3, 2);
+//                    x -= deslocamento;
+//                }
 
-                /* ---- REGIÃO 0 ------*/
-                else if (x == 460 && y == 230){
-                    emit entrar_em_regiao(ID, 0);
-                } else if (x == 440 && y == 110){
-                    emit sair_de_regiao(0, 2);
-                    x += deslocamento;
-                }
+//                /* ---- REGIÃO 0 ------*/
+//                else if (x == 460 && y == 230){
+//                    printf("TREM 2 ENTRANDO NA REGIÃO 0 \n");
+//                    emit entrar_em_regiao(ID, 0);
+//                } else if (x == 440 && y == 110){
+//                    emit sair_de_regiao(0, 2);
+//                    x += deslocamento;
+//                }
 
-                /* ---- REGIÃO 6 ------*/
-                else if(x == 550 && y == 230){
-                    printf("TREM 2 ENTRANDO DA REGIAO 6 \n");
-                    emit entrar_em_regiao(ID, 6);
-                }
+//                /* ---- REGIÃO 6 ------*/
+//                else if(x == 550 && y == 230){
+//                    printf("TREM 2 ENTRANDO DA REGIAO 6 \n");
+//                    emit entrar_em_regiao(ID, 6);
+//                }
 
-                /* ---- ZONA LIVRE ------*/
-                else if (x < 610 && y == 110){ // caminha no superior horizontal
-                    x += deslocamento;
-                } else if(x == 440 && y > 110){ // caminha na lateral esquerda pra cima
-                    y -= deslocamento;
-                } else if(x < 610 && y == 230){ //caminha no inferior horizontal
-                    x -= deslocamento;
-                } else if(x == 610 && y == 220){
-                    printf("DESLOQUE SO MAIS UM");
-                    y += deslocamento;
-                } else if(x == 610 && y >= 110){ //caminha na lateral direita pra baixo
-                    y += deslocamento;}
-//                } else if(x == 610 && y == 230){}
+//                /* ---- ZONA LIVRE ------*/
+//                else if (x < 610 && y == 110){ // caminha no superior horizontal
+//                    x += deslocamento;
+//                } else if(x == 440 && y > 110){ // caminha na lateral esquerda pra cima
+//                    y -= deslocamento;
+//                } else if(x < 610 && y == 230){ //caminha no inferior horizontal
+//                    x -= deslocamento;
+//                } else if(x == 610 && y == 220){
+//                    printf("DESLOQUE SO MAIS UM");
+//                    y += deslocamento;
+//                } else if(x == 610 && y >= 110){ //caminha na lateral direita pra baixo
+//                    y += deslocamento;}
+////                } else if(x == 610 && y == 230){}
 
 
-                emit updateGUI(ID, x,y);    //Emite um sinal
-                break;
+//                emit updateGUI(ID, x,y);    //Emite um sinal
 
 
             case 3:
-            printf("ANALISANDO TREM %d EM SUAS POSIÇÕES: %d , %d \n", ID, x , y);
-                //Trem 3
-                // O Trem 3 usa as regiões: 1, 5.
 
-                /* ---- REGIÃO 1 ------*/
-                if (x == 240 && y == 230){
-                    printf("TREM %d ENTRANDO DA REGIAO 1 \n", ID);
-                    emit entrar_em_regiao(ID, 1);
-                } else if(x > 240 && x < 280 && y == 230){
-                    x += deslocamento;
-                }
-                else if (x == 280 && y == 230){
-                    emit sair_de_regiao(1, 3);
-                     x += deslocamento;
-                }
+//            printf("ANALISANDO TREM %d EM SUAS POSIÇÕES: %d , %d \n", ID, x , y);
+//                //Trem 3
+//                // O Trem 3 usa as regiões: 1, 5.
 
-                /* ---- REGIÃO 5 ------*/
-                else if (x == 330 && y == 230){
-                    //Entrar na região 5
-                    emit entrar_em_regiao(ID, 5);
-                } else if (x == 350 && y == 350){
-                    //Sair da região 5
-                    emit sair_de_regiao(5, 3);
-                    x -= deslocamento;
-                }
+//                /* ---- REGIÃO 1 ------*/
+//                if (x == 240 && y == 230){
+//                    printf("TREM %d ENTRANDO DA REGIAO 1 \n", ID);
+//                    emit entrar_em_regiao(ID, 1);
+//                } else if(x > 240 && x < 280 && y == 230){
+//                    x += deslocamento;
+//                }
+//                else if (x == 280 && y == 230){
+//                    emit sair_de_regiao(1, 3);
+//                     x += deslocamento;
+//                }
 
-                /* ---- ZONA LIVRE ------*/
-                else if (x > 170 && y == 350){
-                    x -= deslocamento;
-                } else if (x == 170 && y > 230)
-                    y -= deslocamento;
-                else if (x < 240 && y == 230){
-                    x += deslocamento;
-               } else if(x > 280 && y == 230){
-                    x += deslocamento;
-               } else if(x == 350 && y < 350){
-                    y += deslocamento;
-               }
+//                /* ---- REGIÃO 5 ------*/
+//                else if (x == 330 && y == 230){
+//                    printf("TREM %d ENTRANDO DA REGIAO 5 \n", ID);
+//                    emit entrar_em_regiao(ID, 5);
+//                } else if (x == 350 && y == 250){
+//                   printf("TREM %d SAINDO DA REGIAO 5 \n", ID);
+//                    emit sair_de_regiao(5, 3);
+//                    y += deslocamento;
+//                } else if(x == 350 && y == 230){
+//                    y += deslocamento;
+//                }
+
+//                /* ---- ZONA LIVRE ------*/
+//                else if (x > 170 && y == 350){
+//                    x -= deslocamento;
+//                } else if (x == 170 && y > 230)
+//                    y -= deslocamento;
+//                else if (x < 240 && y == 230){
+//                    x += deslocamento;
+//               } else if(x > 280 && y == 230){
+//                    x += deslocamento;
+//               } else if(x == 350 && y < 350){
+//                    y += deslocamento;
+//               }
 
 
-                emit updateGUI(ID, x, y);    //Emite um sinal
-                break;
+//                emit updateGUI(ID, x, y);    //Emite um sinal
+
+            break;
 
             case 4:
-//                //Trem 4
-//                // O Trem 4 usa as regiões: 5, 2, 3, 6.
+                    //Trem 4
+                    //Quinas: Sentido do movimento do trem
+                        //min_x: 350
+                        //max_x: 530
 
-//                //Região 5
-//                if (x == 370 && y == 350){
-//                    //Entrar na região 5
-//                    emit entrar_em_regiao(ID, 5);
+                        //min_y: 230
+                        //max_y: 350
 
-//                } else if (x > 350 && y == 350){
-//                    x -= deslocamento;
+                    //Quina 1
+                        //x == 350 && y == 230
+                    //Quina 2
+                        //x == 530 && y == 230
+                    //Quina 3
+                        //x == 350 && y == 350
+                    //Quina 4
+                        //x == 530 && y == 350
 
-//                } else if (x == 350 && y > 350){
-//                    y -= deslocamento;
+                     if ( x > 350 && y == 350){
+                            if(x == 530){
+                                emit ir_para_zona_livre(6, 4);
+                                x -= 10; //retrocede
+                            }
 
-//                } else if (x == 350 && y == 230){
-//                    //Sair da região 5
-//                    emit sair_de_regiao(5);
-//                    x += deslocamento;
-//                }
+                            else if(x == 370){
+                                emit entrar_em_regiao(ID, 5);
+                            }
+                            else x -= 10;
+                        }
 
-//                //Região 2
-//                else if (x == 350 && y == 250){
-//                    //Entrar na região 2
-//                    emit entrar_em_regiao(ID, 2);
-//                } else if (x == 440 && y == 230){
-//                    //Sair da região 2
-//                    emit sair_de_regiao(2);
-//                    x += deslocamento;
-//                }
+                        else if (x == 350 && y >= 230){
+                            if(y == 250){
+                                 emit entrar_em_regiao(ID, 2);
+                            }
+                            else if(y == 230){
+                                emit sair_de_regiao(5);
+                                x+=10;
+                            }
+                            else y-=10;
+                        }
+
+                        else if (x <= 530 && y == 230){
+                            if(x == 440){
+                                emit sair_de_regiao(2);
+                                x += 10;
+                            }
+                            else if(x == 420){
+                                   emit entrar_em_regiao(ID, 3);
+                           }
+
+                            else if(x == 510){
+                                    emit entrar_em_regiao(ID, 6);
+                            }
+
+                            else if(x == 530){
+                                 emit sair_de_regiao(3);
+                                y += 10;
+
+                            }
+
+                            else x+=10;
+
+                        }
+                        else
+                            if(y == 350){
+                                emit sair_de_regiao(6);
+                                y+=10;
+                            }
+                           else y+=10;
+
+            emit updateGUI(ID, x, y);
 
 
-//                //Região 3
-//                else if (x == 420 && y == 230){
-//                    //Entrar na região 3
-//                    emit entrar_em_regiao(ID, 3);
-
-//                } else if (x == 440 && y == 230){
-//                    //Sair da região 0
-//                    emit sair_de_regiao(0);
-//                    x += deslocamento;
-
-//                } else if (x == 530 && y == 230){
-//                    //Sair da região 3
-//                    emit sair_de_regiao(3);
-//                    y -= deslocamento;
-//                }
-
-
-//                //Região 6
-//                else if (x == 510 && y == 230){
-//                    //Entrar na região 6
-//                    emit entrar_em_regiao(ID, 6);
-//                } else if (x == 530 && y == 250){
-//                    //Sair da região 6
-//                    emit sair_de_regiao(6);
-//                     x -= deslocamento;
-//                }
-//                else
-//                    x -= deslocamento;
-
-                emit updateGUI(ID, x, y);    //Emite um sinal
-                break;
+            break;
 
 
             case 5:
@@ -297,8 +367,8 @@ void Trem::run(){
             default:
                 break;
         }
-
-        msleep(velocidade);
+        if (velocidade == 200) msleep(1);
+        else msleep(velocidade);
     }
 }
 

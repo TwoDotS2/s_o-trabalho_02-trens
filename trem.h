@@ -52,7 +52,9 @@ signals:
 
     void entrar_em_regiao(int ID, int regiao);
 
-    void sair_de_regiao(int regiao, int regiao_trem);
+    void sair_de_regiao(int regiao);
+
+    void  ir_para_zona_livre(int regiao, int trem);
 
 private:
    int x = 0;           //posição X do trem na tela
