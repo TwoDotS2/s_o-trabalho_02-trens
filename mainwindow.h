@@ -3,8 +3,10 @@
 
 #include <QSemaphore>
 #include <array>
+#include <QMutex>
 
 #define ZONA_LIVRE -1
+
 
 static QSemaphore regiao[7]; //semaforos das regioes criticas
 static std::array<int, 5> trem_por_regiao{ ZONA_LIVRE,
@@ -12,7 +14,7 @@ static std::array<int, 5> trem_por_regiao{ ZONA_LIVRE,
                                                                     ZONA_LIVRE,
                                                                     ZONA_LIVRE,
                                                                     ZONA_LIVRE}; //array que guarda as regiões que cada trem está acessando no momento
-static QSemaphore mutex; //mutex para controlar a mudanca de estado
+static QMutex mutex; //mutex para controlar a mudanca de estado
 
 #include <QMainWindow>
 #include "trem.h"
