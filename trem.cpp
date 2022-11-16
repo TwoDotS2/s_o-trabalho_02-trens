@@ -50,7 +50,7 @@ void Trem::run(){
                 else if (x == 440 && y == 210){
                     emit entrar_em_regiao(ID, 2);
 
-                } else if (x == 350 && y == 230){
+                } else if (x == 380 && y == 230){
                     emit sair_de_regiao(2, 1);
                     x -= deslocamento;
                     printf("SAINDO DA REGIÃO 2");
@@ -70,6 +70,7 @@ void Trem::run(){
                     printf("SAINDO DA REGIÃO 1");
                     y -= deslocamento;
                 }
+
 
                 /* ---- ZONA LIVRE ------*/
                 else if (x == 260 && y > 110){
@@ -106,13 +107,15 @@ void Trem::run(){
                 else if (x == 550 && y == 230){
                     printf("TREM 2 ENTRANDO DA REGIAO 3 \n");
                     emit entrar_em_regiao(ID, 3);
-                } else if (x == 440 && y == 230){
+                } else if (x == 470 && y == 230){
+                    printf("TREM 2 SAINDO DA REGIAO 3 \n");
                     emit sair_de_regiao(3, 2);
-                    y -= deslocamento;
+                    x -= deslocamento;
                 }
 
                 /* ---- REGIÃO 0 ------*/
                 else if (x == 460 && y == 230){
+                    printf("TREM 2 ENTRANDO NA REGIÃO 0 \n");
                     emit entrar_em_regiao(ID, 0);
                 } else if (x == 440 && y == 110){
                     emit sair_de_regiao(0, 2);
@@ -163,12 +166,14 @@ void Trem::run(){
 
                 /* ---- REGIÃO 5 ------*/
                 else if (x == 330 && y == 230){
-                    //Entrar na região 5
+                    printf("TREM %d ENTRANDO DA REGIAO 5 \n", ID);
                     emit entrar_em_regiao(ID, 5);
-                } else if (x == 350 && y == 350){
-                    //Sair da região 5
+                } else if (x == 350 && y == 250){
+                   printf("TREM %d SAINDO DA REGIAO 5 \n", ID);
                     emit sair_de_regiao(5, 3);
-                    x -= deslocamento;
+                    y += deslocamento;
+                } else if(x == 350 && y == 230){
+                    y += deslocamento;
                 }
 
                 /* ---- ZONA LIVRE ------*/

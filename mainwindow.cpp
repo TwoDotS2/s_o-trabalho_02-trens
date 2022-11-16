@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Cria o trem com seu (ID, posição X, posição Y)
     trem1 = new Trem(1, 380, 110);
-    trem2 = new Trem(2, 510, 110);
-    trem3 = new Trem(3, 170, 290);
+    trem2 = new Trem(2, 610, 230);
+    trem3 = new Trem(3, 170, 300);
     trem4 = new Trem(4, 440, 350);
     trem5 = new Trem(5, 710, 290);
 
@@ -104,6 +104,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::entrar_em_regiao(int ID, int _regiao){
     printf("\n ENTRAR_EM_REGIAO : SWITCH -> %d \n", ID);
+    printf("STATUS DAS REGIÕES: \n");
+    printf("Trem 1: %d | Trem 2: %d | Trem 3: %d | Trem 4: %d | Trem 5: %d", trem_por_regiao[T1], trem_por_regiao[T2], trem_por_regiao[T3], trem_por_regiao[T4], trem_por_regiao[T5]);
     switch (ID) {
 
     case 1:
@@ -160,7 +162,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
         if(_regiao == 1){
             //printf("ENTRANDO NA REGIAO 1, state: ", trem_por_regiao[T1]);
 
-            while(trem_por_regiao[T1] == 2){
+            while(trem_por_regiao[T1] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
 
@@ -188,7 +190,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
        //Acessar região 4
        if(_regiao == 4){
            while(trem_por_regiao[T2] == ZONA_LIVRE){
-
+                printf("T2 IS FREE ZONE");
                //Trava o "mutex"
                mutex.acquire(1);
 
@@ -209,7 +211,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
        //Acessar região 3
         if(_regiao == 3){
-            while(trem_por_regiao[T2] == 4){
+            while(trem_por_regiao[T2] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
 
@@ -229,11 +231,11 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
         //Acessar região 0
         if(_regiao == 0){
-            while(trem_por_regiao[T2] == 3){
+            while(trem_por_regiao[T2] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
 
-//              if(/*condição*/)
+                  if(!(trem_por_regiao[T1] == 0 && trem_por_regiao[T4] == 0))
                     trem_por_regiao[T2] = 0;
 
                 //Libera o "mutex"
@@ -248,7 +250,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
         }
         //Acessar região 6
         if(_regiao == 6){
-            while(trem_por_regiao[T2] == 4){
+            while(trem_por_regiao[T2] == ZONA_LIVRE){
                 //Trava o "mutex"
                 mutex.acquire(1);
 
@@ -273,7 +275,6 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
 
         //Trem 3
         // O Trem 3 usa as regiões: 1, 5.
-        printf("AQUI COM TREM 3 ESTÁ MESMO NA REGIAO %d", _regiao);
 
         //Acessar região 1
         if(_regiao == 1){
@@ -303,7 +304,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
        if(_regiao == 5){
            //printf("ENTRANDO NA REGIAO 5, state: ", trem_por_regiao[T3]);
 
-           while(trem_por_regiao[T3] == 1){
+           while(trem_por_regiao[T3] == ZONA_LIVRE){
 
                //Trava o "mutex"
                mutex.acquire(1);
@@ -318,7 +319,7 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
            //Se tem acesso a região, se desloca
            if(trem_por_regiao[T3] == 5){
                regiao[5].acquire(1);
-               trem3->set_x(ui->label_trem3->y()+10);
+               trem3->set_x(ui->label_trem3->x()+10);
            }
        }
 
