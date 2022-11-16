@@ -31,7 +31,7 @@ void Trem::run(){
         if(velocidade < 200){
         switch(ID){
             case 1:
- /*
+
             //Trem 1
            //Quinas: Sentido do movimento do trem
                //min_x: 260
@@ -41,7 +41,7 @@ void Trem::run(){
                //max_y: 230
 
            if (x < 440 && y == 110){
-               if(x == 420){
+               if(x == 410){
                    emit entrar_em_regiao(ID, 0);
                }
                else { x += 10; }
@@ -75,7 +75,7 @@ void Trem::run(){
             else if(x == 260) y-=10;
 
            emit updateGUI(ID, x,y);    //Emite um sinal
-*/
+
             break;
             case 2:
 
@@ -88,7 +88,7 @@ void Trem::run(){
                    //max_y: 230
 
               //1ª parte do caminho
-/*
+
             if (x == 610 && y < 230){
                    if (y == 210){
                      emit entrar_em_regiao(ID, 4);
@@ -98,20 +98,24 @@ void Trem::run(){
 
                 //2ª parte do caminho
                else if (x >= 530  && y == 230){
-                   if(x == 550){
-                       emit entrar_em_regiao(ID, 3);
-                   }
+                printf("TREM 2 na segunda parte inferior");
                    if(x == 530){
+                       printf("VOU SAIR AGORA MESMO DA REIGAO 4");
                        emit sair_de_regiao(4);
                        x-=10;
                    }
                    else x -= 10;
-               }
+               } else if(x == 460 && y == 230){
+                printf("VOU ENTRAR NA REGIÃO 3");
+                emit entrar_em_regiao(ID, 3);
+            }
                 //3ª parte do caminho
                else if (x >= 440 && x <= 530  && y == 230){
-                       if (x == 440){
+                       if (x == 440 && y == 230){
                             emit sair_de_regiao(3);
                             y -= 10;
+                       } else if(x == 440){
+                           y -= 10;
                        }
                        else if(x == 460){
                            emit entrar_em_regiao(ID, 0);
@@ -133,7 +137,7 @@ void Trem::run(){
                else if(x < 610)  x += 10;
 
                emit updateGUI(ID, x,y);    //Emite um sinal
-*/
+
             break;
 
             case 3:
@@ -144,7 +148,7 @@ void Trem::run(){
 
 //                //min_y = 230
 //                //max_y = 350
-/*
+
                  //1ª parte do caminho
                 if(x == 170 && y >= 230){
                    if(y == 230){
@@ -183,17 +187,17 @@ void Trem::run(){
                 }
 
             emit updateGUI(ID, x,y);    //Emite um sinal
-*/
+
             break;
 
-            case 4:
-//                    //Trem 4
-//                    //Quinas: Sentido do movimento do trem
-//                        //min_x: 350
-//                        //max_x: 530
+//            case 4:
+////                    //Trem 4
+////                    //Quinas: Sentido do movimento do trem
+////                        //min_x: 350
+////                        //max_x: 530
 
-//                        //min_y: 230
-//                        //max_y: 350
+////                        //min_y: 230
+////                        //max_y: 350
 
 
                      if ( x > 350 && y == 350){

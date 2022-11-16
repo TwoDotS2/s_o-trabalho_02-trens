@@ -130,7 +130,9 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
                if( trem_por_regiao[T2] != 3 && trem_por_regiao[T4] != 2 && trem_por_regiao[T4] != 5 ){
                     printf("PERMITIDO ENTRAR: T1 ESTA EM ZONA 0 \n");
                     trem_por_regiao[T1] = 0;
-                }
+                } else {
+                   printf("TREM 1 ESTÁ DORMINDO");
+               }
 
                //Libera o "mutex"
                mutex.unlock();
@@ -140,6 +142,8 @@ void MainWindow::entrar_em_regiao(int ID, int _regiao){
            if(trem_por_regiao[T1] == 0){
                regiao[0].acquire(1);
                trem1->set_x(ui->label_trem1->x()+10);
+           } else {
+               trem1->set_x(ui->label_trem1->x()+0);
            }
        }
 
